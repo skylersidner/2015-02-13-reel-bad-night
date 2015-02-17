@@ -17,14 +17,16 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS events
                  doors_open TEXT NOT NULL,
                  start_time TEXT NOT NULL,
                  host_msg TEXT,
+                 film_id INTEGER,
                  FOREIGN KEY (film_id) REFERENCES films(id))")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS drinks
                  (id INTEGER PRIMARY KEY,
                  name TEXT NOT NULL,
                  type TEXT NOT NULL,
-                 description TEXT
-                 FOREIGN KEY (film_id) REFERENCES films(id))")
+                 description TEXT,
+                 event_id INTEGER,
+                 FOREIGN KEY (event_id) REFERENCES events(id))")
 
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS patrons
@@ -34,7 +36,9 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS patrons
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS events_patrons
                  (id INTEGER PRIMARY KEY,
+                 event_id INTEGER,
+                 patron_id INTEGER,
                  FOREIGN KEY (event_id) REFERENCES events(id),
-                 FOREIGN KEY (patron_id) REFERENCES patrons(id)")
+                 FOREIGN KEY (patron_id) REFERENCES patrons(id))")
 
 DATABASE.results_as_hash = true

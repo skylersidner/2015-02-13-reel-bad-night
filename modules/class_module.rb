@@ -21,11 +21,48 @@ module Class_Methods
     results = DATABASE.execute("SELECT * FROM '#{table}'")
     
     convert_to_objects(results)
-    # results_as_objects = []
+#     results_as_objects = []
 #     results.each do |x|
 #       results_as_objects << self.new(x)
 #     end
 #     results_as_objects
+  end
+  
+  #---------------------------------------------------------
+  # Public: .search
+  # Searches the database for records.
+  #
+  # Parameters:
+  # field_name  - String: The name of field in the database.
+  # choice      - String/Integer: The corresponding values for that field.
+  #
+  # Returns: An array of objects matching the search.
+  #
+  # State Changes: None
+  #---------------------------------------------------------
+  def search(table_name, field_name, choice)
+    if choice.is_a?(String)
+      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}='#{choice}'")
+    else
+      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{choice}")
+    end
+    convert_to_objects(results)
+
+  end
+  
+  #---------------------------------------------------------
+  # Public: .delete
+  # Removes a record from the database, based on its ID
+  #
+  # Parameter:
+  # id  - Integer: The ID of the record to be removed.
+  #
+  # Returns: None
+  #
+  # State Changes: Removes the record from the database.
+  #---------------------------------------------------------
+  def delete(table_name, id)
+      DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{id}")
   end
   
   private
