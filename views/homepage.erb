@@ -1,10 +1,47 @@
 
 <div class="main_event">
   <h3>Next Reel Bad Night</h3>
-  <p>All of your cool MAIN event info goes here!</p>
+  <div class="host_msg">
+    <p><%= @current_event.host_msg %></p>
+  </div>
+  <div class="date_time">
+    <p><%= @current_event.date %></p>
+    <p><%= @current_event.doors_open %></p>
+    <p><%= @current_event.start_time %></p>
+  </div>
+  <div class="title_synopsis">
+    <p><%= @current_film.title %></p>
+    <p><%= @current_film.year %></p>
+    <p><%= @current_film.synopsis %></p>
+  </div>
+  <div class="length_rating">
+    <p><%= @current_film.length %></p>
+    <p><%= @current_film.rt_rating %></p>
+  </div>
+  <div class="trailer">
+    <p>See the <a href="#{<%= @current_film.trailer %>}">trailer</a>
+  </div>
 </div>
 
 <div class="prev_event">
   <h3>Previous Reel Bad Night</h3>
-  <p>All of your cool PREVIOUS event info goes here!</p>
+  <div class="host_msg">
+    <p><%= @previous_event.host_msg %></p>
+  </div>
+  <div class="date_time">
+    <p><%= @previous_event.date %></p>
+    <p><%= @previous_event.doors_open %></p>
+    <p><%= @previous_event.start_time %></p>
+  </div>
+  <div class="title_synopsis">
+    <p><%= @previous_film.title %></p>
+    <p><%= @previous_film.year %></p>
+    <p><%= @previous_film.synopsis %></p>
+  </div>
+  <div class="length_rating">
+    <p><%= @previous_film.length %></p>
+    <p><%= @previous_film.rt_rating %></p>
+  </div>
+  <div class="trailer">
+    <p>See the <a href="#{<%= @previous_film.trailer %>}">trailer</a>  </div>
 </div>

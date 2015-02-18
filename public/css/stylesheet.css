@@ -27,8 +27,31 @@ body {
 }
 
 .display {
-  background-color: #AA7139;
   width: 80%;
+}
+
+.main_event {
+  background-color: #AA7139;
+}
+
+.main_event p {
+  color: #FFD4AA;
+}
+
+.main_event h3 {
+  color: #552A00;
+}
+
+.prev_event {
+  background-color: #AA9739;
+}
+
+.prev_event h3 {
+  color: #554700;
+}
+
+.prev_event p {
+  color: #FFF1AA;
 }
 
 .nav_menu {

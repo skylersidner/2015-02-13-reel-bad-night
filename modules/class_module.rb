@@ -50,6 +50,15 @@ module Class_Methods
 
   end
   
+  
+  # # Method for finding a specific record when you know the id.
+  # # This is the same as search, but shorter, more specific.
+  # def specific(table_name, id)
+  #   results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id=#{id}")
+  #   obj = self.new(results)
+  #   obj
+  # end
+  
   #---------------------------------------------------------
   # Public: .delete
   # Removes a record from the database, based on its ID
