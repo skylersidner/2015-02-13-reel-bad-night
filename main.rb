@@ -25,3 +25,28 @@ get "/" do
   @previous_film = array[0]
   erb :homepage
 end
+
+get "/search/*" do
+  @table = ""
+  @fields = []
+  if params[:splat] == ["e"]
+    @fields = ["date", "doors_open", "start_time", "current_event", "film_id", 
+              "host_msg"]
+    @table = "events"
+  elsif params[:splat] == ["p"]
+    @fields = ["first_name", "last_name"]
+    @table = "patrons"
+  elsif params[:splat] == ["d"]
+    @fields = ["name", "type", "description", "event_id"]
+    @table = "drinks"
+  else params[:splat] == ["f"]
+    @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
+    @table = "films"
+  end
+  erb :search
+end
+
+get "/results" do
+  
+  erb :results
+end

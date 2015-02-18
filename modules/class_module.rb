@@ -40,11 +40,11 @@ module Class_Methods
   #
   # State Changes: None
   #---------------------------------------------------------
-  def search(table_name, field_name, choice)
-    if choice.is_a?(String)
-      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}='#{choice}'")
+  def search(table_name, field_name, value)
+    if value.is_a?(String)
+      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}='#{value}'")
     else
-      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{choice}")
+      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{value}")
     end
     convert_to_objects(results)
 
