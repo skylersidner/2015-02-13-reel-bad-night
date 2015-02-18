@@ -1,6 +1,4 @@
 require 'pry'
-require 'mini-portile'
-require 'nokogiri'
 require 'rotten-tomatoes'
 
 require_relative 'db_setup.rb'
@@ -16,3 +14,7 @@ require_relative 'models/patron.rb'
 
 require 'sinatra'
 
+get "/" do
+  
+  erb :homepage
+end

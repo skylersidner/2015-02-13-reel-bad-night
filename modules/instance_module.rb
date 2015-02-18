@@ -12,24 +12,26 @@ module Instance_Methods
   #
   # State Changes: Updates data in the database.
   #---------------------------------------------------------
-def save(table_name)
-    attributes = []
-    query_components_array = []
+  def save(table_name)
+      attributes = []
+      query_components_array = []
 
-    instance_variables.each do |i|
-      attributes << i.to_s.delete("@")
-    end
-
-    attributes.each do |a|
-      value = self.send(a)
-      if value.is_a?(Integer) || value.is_a?(Float)
-        query_components_array << "#{a} = #{self.send(a)}"
-      else
-        query_components_array << "#{a} = '#{self.send(a)}'"
+      instance_variables.each do |i|
+        attributes << i.to_s.delete("@")
       end
-    end
 
-    q = query_components_array.join(", ")
+      attributes.each do |a|
+        value = self.send(a)
+        if value.is_a?(Integer) || value.is_a?(Float)
+          query_components_array << "#{a} = #{self.send(a)}"
+        else
+          query_components_array << "#{a} = '#{self.send(a)}'"
+        end
+      end
 
-    DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
-end
+      q = query_components_array.join(", ")
+
+      DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
+  end #method
+  
+end #class

@@ -17,6 +17,7 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS events
                  doors_open TEXT NOT NULL,
                  start_time TEXT NOT NULL,
                  host_msg TEXT,
+                 current_event INTEGER,
                  film_id INTEGER,
                  FOREIGN KEY (film_id) REFERENCES films(id))")
 

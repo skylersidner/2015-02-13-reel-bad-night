@@ -1,0 +1,42 @@
+body {
+  margin: 2px;
+  background-color: black;
+}
+
+.nav_column {
+  background-color: #AA9739;
+  height: 70%;
+  width: 20%;
+  position: absolute;
+  right: 0;
+}
+
+.admin_column {
+  background-color: #AA8639;
+  height: 30%;
+  width: 20%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.banner {
+  background-color: #AA8639;
+  height: 80px;
+  width: 80%;
+}
+
+.display {
+  background-color: #AA7139;
+  width: 80%;
+}
+
+.nav_menu {
+  
+}
+
+h1 {
+    padding: 2px;
+    color: #553A00;
+    text-align: center;
+}

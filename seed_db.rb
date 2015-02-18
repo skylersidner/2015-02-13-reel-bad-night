@@ -51,21 +51,21 @@ msg4 = "Shake off that turkey coma and bandage up your Black Friday trample
         
 # Time/date insertions need someone else' eyes; not sure if I'm doing this right.
 
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, film_id, 
-                  host_msg) VALUES
-                  ('2014-06-06', '19:30', '20:00', 2, ?)", "#{msg1}")
+DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+                  current_event, film_id, host_msg) VALUES
+                  ('2014-06-06', '19:30', '20:00', 0, 2, ?)", "#{msg1}")
 
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, film_id, 
-                  host_msg) VALUES
-                  ('2014-09-05', '19:30', '20:00', 3, ?)", "#{msg2}")
+DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+                  current_event, film_id, host_msg) VALUES
+                  ('2014-09-05', '19:30', '20:00', 0, 3, ?)", "#{msg2}")
                   
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, film_id, 
-                  host_msg) VALUES
-                  ('2014-10-03', '19:30', '20:00', 1, ?)", "#{msg3}")
+DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+                  current_event, film_id, host_msg) VALUES
+                  ('2014-10-03', '19:30', '20:00', 1, 1, ?)", "#{msg3}")
                   
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, film_id, 
-                  host_msg) VALUES
-                  ('2014-12-05', '19:00', '20:00', 4, ?)", "#{msg4}")
+DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+                  current_event, film_id, host_msg) VALUES
+                  ('2014-12-05', '19:00', '20:00', 2, 4, ?)", "#{msg4}")
 
 DATABASE.execute("INSERT INTO drinks (name, type, description, event_id) VALUES 
                   ('Egg Nog', 'cocktail', 'Sweetened dairy-based drink, 

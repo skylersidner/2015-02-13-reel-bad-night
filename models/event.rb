@@ -3,7 +3,7 @@
 class Event
   
   attr_reader :id
-  attr_accessor :date, :doors_open, :start_time, :host_msg
+  attr_accessor :date, :doors_open, :start_time, :current_event, :host_msg
   
   extend Class_Methods
   include Instance_Methods
@@ -13,6 +13,7 @@ class Event
     @date = options["date"]
     @doors_open = options["doors_open"]
     @start_time = options["start_time"]
+    @current_event = options["current_event"]
     @host_msg = options["host_msg"]
   end
   
@@ -27,7 +28,7 @@ class Event
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO events (date, doors_open, start_time, host_msg) VALUES ('#{@date}', '#{@doors_open}', '#{@start_time}', '#{@host_msg}')")
+    DATABASE.execute("INSERT INTO events (date, doors_open, start_time, current_event, host_msg) VALUES ('#{@date}', '#{@doors_open}', '#{@start_time}', '#{@host_msg}')")
     @id = DATABASE.last_insert_row_id
   end
   
