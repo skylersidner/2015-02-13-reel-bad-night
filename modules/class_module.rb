@@ -60,21 +60,7 @@ module Class_Methods
   #   obj
   # end
   
-  #---------------------------------------------------------
-  # Public: .delete
-  # Removes a record from the database, based on its ID
-  #
-  # Parameter:
-  # id  - Integer: The ID of the record to be removed.
-  #
-  # Returns: None
-  #
-  # State Changes: Removes the record from the database.
-  #---------------------------------------------------------
-  def delete(table_name, id)
-      DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{id}")
-  end
-  
+
   private
   
   

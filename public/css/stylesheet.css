@@ -46,12 +46,12 @@ body {
   background-color: #AA9739;
 }
 
-.block2 h3 {
-  color: #554700;
-}
-
 .block2 p {
   color: #FFF1AA;
+}
+
+.block2 h3 {
+  color: #554700;
 }
 
 .nav_menu {
@@ -63,3 +63,19 @@ h1 {
     color: #553A00;
     text-align: center;
 }
+
+h2 {
+  color: #AAAAAA;
+  padding: 2px;
+}
+
+.display_results {
+  background-color: #AA7139;
+}
+
+.display_results p {
+  color: #FFD4AA;
+}
+
+
+

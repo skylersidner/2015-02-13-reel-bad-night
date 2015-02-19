@@ -34,4 +34,20 @@ module Instance_Methods
       DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
   end #method
   
+  #---------------------------------------------------------
+  # Public: #delete
+  # Removes a record from the database, based on its ID
+  #
+  # Parameter:
+  # id  - Integer: The ID of the record to be removed.
+  #
+  # Returns: None
+  #
+  # State Changes: Removes the record from the database.
+  #---------------------------------------------------------
+  def delete(table_name, id)
+      DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{@id}")
+  end
+  
+  
 end #class

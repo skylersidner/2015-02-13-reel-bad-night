@@ -1,1 +1,12 @@
 <h2>Results...</h2>
+
+
+<% @results.each do |x| %>
+  <div class="display_results">
+    <% x.each do |key, value| %>
+      <% if key.is_a?(String) %>
+        <p><%= key %>: <%= value %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

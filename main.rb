@@ -1,6 +1,9 @@
 require 'pry'
 require 'rotten-tomatoes'
 
+require 'active_support'
+require 'active_support/Inflector'
+
 require_relative 'db_setup.rb'
 
 require_relative 'modules/instance_module'
@@ -55,7 +58,11 @@ get "/search/*" do
 end
 
 get "/results" do
-  # Need to figure out a better design for this to work
+  # # Use Active Support to capture the right object.
+  # object_type = (params[:table].classify).constantize
+  # results = object_type.search(params[:table], params[:field], params[:value])
+  
+  @results = DATABASE.execute("SELECT * FROM #{params[:table]} WHERE #{params[:field]}='#{params[:value]}'")
   erb :results
 end
 
@@ -65,6 +72,5 @@ get "/new/*" do
 end
 
 get "/confirm" do
-  binding.pry
   erb :confirm
 end
