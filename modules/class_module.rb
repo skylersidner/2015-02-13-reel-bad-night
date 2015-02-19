@@ -46,6 +46,7 @@ module Class_Methods
     else
       results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{value}")
     end
+    
     convert_to_objects(results)
 
   end
@@ -75,6 +76,9 @@ module Class_Methods
   end
   
   private
+  
+  
+  # NEEDS DOCUMENTATION
   
   def convert_to_objects(results)
     results_as_objects = []

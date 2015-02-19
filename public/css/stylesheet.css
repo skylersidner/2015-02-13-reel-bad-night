@@ -30,27 +30,27 @@ body {
   width: 80%;
 }
 
-.main_event {
+.block1 {
   background-color: #AA7139;
 }
 
-.main_event p {
+.block1 p {
   color: #FFD4AA;
 }
 
-.main_event h3 {
+.block1 h3 {
   color: #552A00;
 }
 
-.prev_event {
+.block2 {
   background-color: #AA9739;
 }
 
-.prev_event h3 {
+.block2 h3 {
   color: #554700;
 }
 
-.prev_event p {
+.block2 p {
   color: #FFF1AA;
 }
 

@@ -36,9 +36,8 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS patrons
                   last_name TEXT NOT NULL)")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS events_patrons
-                 (id INTEGER PRIMARY KEY,
-                 event_id INTEGER,
-                 patron_id INTEGER,
+                 (event_id INTEGER NOT NULL,
+                 patron_id INTEGER NOT NULL,
                  FOREIGN KEY (event_id) REFERENCES events(id),
                  FOREIGN KEY (patron_id) REFERENCES patrons(id))")
 

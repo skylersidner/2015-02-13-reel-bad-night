@@ -26,8 +26,8 @@ module Instance_Methods
           query_components_array << "#{a} = #{self.send(a)}"
         else
           query_components_array << "#{a} = '#{self.send(a)}'"
-        end
-      end
+        end #if
+      end#each
 
       q = query_components_array.join(", ")
 
