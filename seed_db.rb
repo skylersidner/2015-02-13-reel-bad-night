@@ -65,7 +65,7 @@ DATABASE.execute("INSERT INTO events (date, doors_open, start_time,
                   
 DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
                   current_event, film_id, host_msg) VALUES
-                  ('2014-12-05', '19:00', '20:00', 2, 4, ?)", "#{msg4}")
+                  ('2014-12-05', '19:00', '20:00', 2, 5, ?)", "#{msg4}")
 
 DATABASE.execute("INSERT INTO drinks (name, type, description, event_id) VALUES 
                   ('Egg Nog', 'cocktail', 'Sweetened dairy-based drink, 

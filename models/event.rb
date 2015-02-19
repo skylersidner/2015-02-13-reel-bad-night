@@ -3,7 +3,8 @@
 class Event
   
   attr_reader :id
-  attr_accessor :date, :doors_open, :start_time, :current_event, :host_msg
+  attr_accessor :date, :doors_open, :start_time, :host_msg, :current_event,
+                :film_id
   
   extend Class_Methods
   include Instance_Methods
@@ -13,8 +14,9 @@ class Event
     @date = options["date"]
     @doors_open = options["doors_open"]
     @start_time = options["start_time"]
-    @current_event = options["current_event"]
     @host_msg = options["host_msg"]
+    @current_event = options["current_event"]
+    @film_id = options["film_id"]
   end
   
   #---------------------------------------------------------
