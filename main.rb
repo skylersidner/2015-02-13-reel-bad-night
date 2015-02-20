@@ -53,11 +53,11 @@ get "/" do
 end
 
 get "/search/*" do
-
   erb :search
 end
 
 get "/results" do
+  # # DECIDED HASH WAS EASIER THAN OBJECT FOR THIS
   # # Use Active Support to capture the right object.
   # object_type = (params[:table].classify).constantize
   # results = object_type.search(params[:table], params[:field], params[:value])
@@ -67,10 +67,16 @@ get "/results" do
 end
 
 get "/new/*" do
-
   erb :new
 end
 
 get "/confirm" do
+  @table = params.delete("table")
+  @info = params
   erb :confirm
+end
+
+get "/save" do
+  
+  erb :save
 end
