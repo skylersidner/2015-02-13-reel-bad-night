@@ -84,6 +84,8 @@ get "/new/*" do
 end
 
 get "/new_film" do
+  binding.pry
+  
   # Necessary for now; redirect looses this;
   @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
   @table = "films"
@@ -96,9 +98,10 @@ get "/new_film_imdb" do
     search = Imdb::Search.new("#{params[:search]}")
     @results = search.movies
   end
-  
-
-  binding.pry
+  # if params[:film_choice] != nil
+  #   sessions[:film_choice] = params[:film_choice]
+  #   redirect to("/new_film")
+  # end
   erb :new_film_imdb
 end
 
