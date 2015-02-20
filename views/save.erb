@@ -1,2 +1,13 @@
 <h2>Created!</h2>
 
+<div class="block1">
+  <form action="/save">
+    <div class="display_results">
+      <p>ID: <%= @id %>
+      <% @info.each do |key, value| %>
+        <p><%= key %>: <%= value %></p>
+      <% end %>
+      <input type="submit">
+    </div>
+  </form>
+</div>

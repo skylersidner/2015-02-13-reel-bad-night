@@ -77,6 +77,15 @@ get "/confirm" do
 end
 
 get "/save" do
-  
+  object_type = (params["table"].classify).constantize
+  @table = params.delete("table")
+  @info = params
+  object = object_type.new(params)
+  binding.pry
+  @id = object.insert
   erb :save
 end
+
+
+
+

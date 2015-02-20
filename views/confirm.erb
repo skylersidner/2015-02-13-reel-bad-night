@@ -5,9 +5,8 @@
     <div class="display_results">
       <input type="hidden" name="table" value="<%= @table %>">
       <% @info.each do |key, value| %>
-        <% if key.is_a?(String) %>
-          <p><%= key %>: <%= value %></p>
-        <% end %>
+        <p><%= key %>: <%= value %></p>
+        <input type="hidden" name="<%= key %>" value="<%= value %>">
       <% end %>
       <input type="submit">
       <input type="button" name="Back" onclick="javascript:history.back()" value="Back">
