@@ -71,6 +71,8 @@ h2 {
 
 .display_results {
   background-color: #AA7139;
+  margin: 5px;
+  padding: 2px;
 }
 
 .display_results p {

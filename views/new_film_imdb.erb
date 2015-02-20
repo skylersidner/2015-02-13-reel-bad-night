@@ -1,0 +1,33 @@
+<h2>New...</h2>
+<a name="top"></a>
+
+<div class="block1">
+  <p>The IMDB is a vast trove of data.  Broad searches can reveal hundreds, if not thousands of results.  You have been warned.</p>
+</div>
+
+
+<div class="block2">
+  <form action="/new_film_imdb">
+    <select name="search_by">
+      <option value="title">Title</option>
+    </select>
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+  </form>
+</div>
+
+<% if @results.count != 0 %>
+  <% @results.each do |object| %>
+    <div class="display_results">
+      <% object.instance_variables.each do |attribute| %>
+        <% snip = attribute.to_s.delete("@") %>
+        <% if snip == "url" %>
+          <p><a href="<%= object.send(snip) %>">See on the IMDB</a></p>
+        <% else %>
+          <p><%= snip %>: <%= object.send(snip) %></p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <a href="#top">Back to top</a>
+<% end %>

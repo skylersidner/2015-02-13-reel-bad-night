@@ -1,0 +1,14 @@
+<h2>New...</h2>
+
+<div class="block1">
+  <div class="new_form">
+    <form action="/confirm">
+      <input type="hidden" name="table" value="<%= @table %>">
+        <% @fields.each do |x| %>
+        <p><%= "#{x}" %>: <input type="text" name="<%= x %>"><p>
+        <% end %>
+        <p><input type="checkbox" name="imdb" value="yes">Search using the IMDB</p>
+      <input type="submit">
+    </form>
+  </div>
+</div>

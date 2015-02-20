@@ -1,5 +1,5 @@
 require 'pry'
-require 'rotten-tomatoes'
+require 'imdb'
 
 require 'active_support'
 require 'active_support/Inflector'
@@ -17,7 +17,7 @@ require_relative 'models/patron.rb'
 
 require 'sinatra'
 
-# enable :sessions
+enable :sessions
 
 ["/new/*", "/search/*"].each do |path|
   before path do
@@ -36,6 +36,10 @@ require 'sinatra'
     else params[:splat] == ["f"]
       @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
       @table = "films"
+
+      if path == "/new/*"
+        redirect to("/new_film")
+      end
     end #if
   end #before 
 end #each
@@ -67,7 +71,7 @@ get "/results" do
 
   if @results.count == 0
     redirect to("/no_results")
-  end #if
+  end 
   erb :results
 end
 
@@ -79,7 +83,29 @@ get "/new/*" do
   erb :new
 end
 
+get "/new_film" do
+  # Necessary for now; redirect looses this;
+  @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
+  @table = "films"
+  erb :new_film
+end
+
+get "/new_film_imdb" do
+  @results = []
+  if params[:search] != nil
+    search = Imdb::Search.new("#{params[:search]}")
+    @results = search.movies
+  end
+  
+
+  binding.pry
+  erb :new_film_imdb
+end
+
 get "/confirm" do
+  if params[:imdb] == "yes"
+    redirect to("/new_film_imdb")
+  end
   @table = params.delete("table")
   @info = params
   erb :confirm
