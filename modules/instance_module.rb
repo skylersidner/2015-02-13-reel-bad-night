@@ -13,25 +13,25 @@ module Instance_Methods
   # State Changes: Updates data in the database.
   #---------------------------------------------------------
   def save(table_name)
-      attributes = []
-      query_components_array = []
+    attributes = []
+    components_array = []
 
-      instance_variables.each do |i|
-        attributes << i.to_s.delete("@")
-      end
+    instance_variables.each do |i|
+      attributes << i.to_s.delete("@")
+    end
 
-      attributes.each do |a|
-        value = self.send(a)
-        if value.is_a?(Integer) || value.is_a?(Float)
-          query_components_array << "#{a} = #{self.send(a)}"
-        else
-          query_components_array << "#{a} = '#{self.send(a)}'"
-        end #if
-      end#each
+    attributes.each do |a|
+      value = self.send(a)
+      if value.is_a?(Integer) || value.is_a?(Float)
+        components_array << "#{a} = #{self.send(a)}"
+      else
+        components_array << "#{a} = '#{self.send(a)}'"
+      end #if
+    end #each
 
-      q = query_components_array.join(", ")
+    q = components_array.join(", ")
 
-      DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
+    DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
   end #method
   
   #---------------------------------------------------------
@@ -47,7 +47,6 @@ module Instance_Methods
   #---------------------------------------------------------
   def delete(table_name, id)
       DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{@id}")
-  end
-  
+  end  
   
 end #class

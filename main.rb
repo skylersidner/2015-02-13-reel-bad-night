@@ -57,13 +57,22 @@ get "/search/*" do
 end
 
 get "/results" do
-  # # DECIDED HASH WAS EASIER THAN OBJECT FOR THIS
-  # # Use Active Support to capture the right object.
-  # object_type = (params[:table].classify).constantize
-  # results = object_type.search(params[:table], params[:field], params[:value])
-  
-  @results = DATABASE.execute("SELECT * FROM #{params[:table]} WHERE #{params[:field]}='#{params[:value]}'")
+  # Use Active Support to capture the right class.
+  object_class = (params[:table].classify).constantize
+  if params[:all] == "yes"
+    @results = object_class.all(params[:table])
+  else
+    @results = object_class.search(params[:table], params[:field], params[:value])
+  end
+
+  if @results.count == 0
+    redirect to("/no_results")
+  end #if
   erb :results
+end
+
+get "/no_results" do
+  erb :no_results
 end
 
 get "/new/*" do
