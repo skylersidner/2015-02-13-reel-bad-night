@@ -1,6 +1,11 @@
 require 'pry'
 require 'imdb'
 
+# setup for gem
+require 'rottentomatoes'
+include RottenTomatoes
+Rotten.api_key = "5su6tan6prmdssxst2q9xgv6"
+
 require 'active_support'
 require 'active_support/Inflector'
 
@@ -84,30 +89,40 @@ get "/new/*" do
 end
 
 get "/new_film" do
-  binding.pry
-  
+  @film = Film.new("title"=>"", "year"=>"", "length"=>"", "synopsis"=>"", "trailer"=>"", "rt_rating"=>"")
+  if params.length != 0
+    @film = Film.new(params)
+  end
   # Necessary for now; redirect looses this;
   @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
   @table = "films"
   erb :new_film
 end
 
-get "/new_film_imdb" do
+get "/new_film_rt" do
   @results = []
   if params[:search] != nil
-    search = Imdb::Search.new("#{params[:search]}")
-    @results = search.movies
+    
+    search = RottenMovie.find(:title => "#{params[:search]}", :limit => 20)
+    if search.length == nil
+      search = [search]
+    end
+    search.each do |x|
+      film = Film.new("title"=>"#{x.title}", "year"=>"#{x.year}", "length"=>"#{x.runtime}", "synopsis"=>"#{x.synopsis}", "trailer"=>"", "rt_rating"=>"#{x.ratings.critics_score}")
+      @results << film
+    end 
+    
+    # # Old functionality for IMDB searching
+    # search = Imdb::Search.new("#{params[:search]}")
+    # @results = search.movies
   end
-  # if params[:film_choice] != nil
-  #   sessions[:film_choice] = params[:film_choice]
-  #   redirect to("/new_film")
-  # end
-  erb :new_film_imdb
+  @table = "films"
+  erb :new_film_rt
 end
 
 get "/confirm" do
-  if params[:imdb] == "yes"
-    redirect to("/new_film_imdb")
+  if params[:rt] == "yes"
+    redirect to("/new_film_rt")
   end
   @table = params.delete("table")
   @info = params
@@ -118,12 +133,11 @@ get "/save" do
   object_type = (params["table"].classify).constantize
   @table = params.delete("table")
   @info = params
+  
   object = object_type.new(params)
-  binding.pry
   @id = object.insert
   erb :save
 end
-
 
 
 

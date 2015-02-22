@@ -29,7 +29,7 @@ class Film
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO films (title, year, synopsis, trailer, rt_rating) VALUES ('#{@title}', '#{@year}', '#{@synopsis}', '#{@trailer}', '#{@rt_rating}')")
+    DATABASE.execute("INSERT INTO films (title, length, year, synopsis, trailer, rt_rating) VALUES ('#{@title}', '#{@length}', '#{@year}', '#{@synopsis}', '#{@trailer}', '#{@rt_rating}')")
     @id = DATABASE.last_insert_row_id
   end
   

@@ -3,12 +3,12 @@
 
 
 <div class="block1">
-  <p>The IMDB is a vast trove of data.  Broad searches can reveal hundreds, if not thousands of results.  You have been warned.</p>
+  <p>RottenTomatoes.com a vast trove of data.  Broad searches can reveal hundreds of results.  You have been warned.</p>
 </div>
 
 
 <div class="block2">
-  <form action="/new_film_imdb">
+  <form action="/new_film_rt">
     <select name="search_by">
       <option value="title">Title</option>
     </select>
@@ -20,14 +20,11 @@
 <% if @results.count != 0 %>
   <% @results.each do |object| %>
     <form action="/new_film">
+      <input type="hidden" name="table" value="<%= @table %>">
       <div class="display_results">
         <% object.instance_variables.each do |attribute| %>
           <% snip = attribute.to_s.delete("@") %>
-          <% if snip == "url" %>
-            <p><a href="<%= object.send(snip) %>">See on the IMDB</a></p>
-          <% else %>
-            <p><%= snip %>: <%= object.send(snip) %></p>
-          <% end %>
+          <p><%= "#{snip}" %>: <%= object.send(snip) %></p>
           <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
         <% end %>
         <input type="submit" value="This one!">

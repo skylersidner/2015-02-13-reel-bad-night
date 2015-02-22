@@ -5,9 +5,9 @@
     <form action="/confirm">
       <input type="hidden" name="table" value="<%= @table %>">
         <% @fields.each do |x| %>
-        <p><%= "#{x}" %>: <input type="text" name="<%= x %>"><p>
+        <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @film.send(x) %>"><p>
         <% end %>
-        <p><input type="checkbox" name="imdb" value="yes">Search using the IMDB</p>
+        <p><input type="checkbox" name="rt" value="yes">Search using RottenTomatoes</p>
       <input type="submit">
     </form>
   </div>
