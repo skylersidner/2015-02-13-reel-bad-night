@@ -30,7 +30,7 @@ class Event
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO events (date, doors_open, start_time, current_event, host_msg) VALUES ('#{@date}', '#{@doors_open}', '#{@start_time}', '#{@current_event}', ?)", "#{@host_msg}")
+    DATABASE.execute("INSERT INTO events (date, doors_open, start_time, current_event, film_id, host_msg) VALUES ('#{@date}', '#{@doors_open}', '#{@start_time}', '#{@current_event}', '#{@film_id}', ?)", "#{@host_msg}")
     @id = DATABASE.last_insert_row_id
   end
   

@@ -3,8 +3,7 @@
 <div class="block1">
   <div class="new_form">
     <form action="/confirm">
-      <input type="hidden" name="table" value="<%= @table %>">
-        <% @fields.each do |x| %>
+        <% session[:fields].each do |x| %>
         <p><%= "#{x}" %>: <input type="text" name="<%= x %>"><p>
         <% end %>
       <input type="submit">

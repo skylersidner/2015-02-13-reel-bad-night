@@ -3,9 +3,15 @@
 
 <% @results.each do |object| %>
   <div class="display_results">
+    <form action="/confirm">
     <% object.instance_variables.each do |attribute| %>
       <% snip = attribute.to_s.delete("@") %>
       <p><%= snip %>: <%= object.send(snip) %></p>
+      <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
     <% end %>
+    <% if session[:remove] == true %>
+        <input type="submit" value="This one!">
+    <% end %>
+    </form>
   </div>
 <% end %>

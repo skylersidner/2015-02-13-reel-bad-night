@@ -3,13 +3,35 @@
 <div class="block1">
   <form action="/save">
     <div class="display_results">
-      <input type="hidden" name="table" value="<%= @table %>">
       <% @info.each do |key, value| %>
         <p><%= key %>: <%= value %></p>
         <input type="hidden" name="<%= key %>" value="<%= value %>">
       <% end %>
-      <input type="Submit" name="Add this!">
+      
+      <% if session[:remove] == true && @results.count == 0 %>
+        <input type="Submit" value="Remove this!">
+      <% elsif session[:remove] == false %>
+        <input type="Submit" value="Add this!">
+      <% end %>
+      
       <input type="button" name="Back" onclick="javascript:history.back()" value="Back">
     </div>
   </form>
 </div>
+
+<% if session[:remove] == true && @results.count != 0 %>
+  <div class="block2">
+    <p>You cannot remove this because it is associated with the following event(s):</p>
+  </div>
+  <% @results.each do |object| %>
+    <div class="display_results">
+      <form action="/confirm">
+      <% object.instance_variables.each do |attribute| %>
+        <% snip = attribute.to_s.delete("@") %>
+        <p><%= snip %>: <%= object.send(snip) %></p>
+        <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
+      <% end %>
+      </form>
+    </div>
+  <% end %>
+<% end %>

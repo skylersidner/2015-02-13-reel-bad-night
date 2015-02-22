@@ -3,7 +3,7 @@
 
 
 <div class="block1">
-  <p>RottenTomatoes.com a vast trove of data.  Broad searches can reveal hundreds of results.  You have been warned.</p>
+  <p>RottenTomatoes.com a vast trove of data.  Broad searches can reveal hundreds of results.  This has been restricted to the top 20.</p>
 </div>
 
 
@@ -20,7 +20,6 @@
 <% if @results.count != 0 %>
   <% @results.each do |object| %>
     <form action="/new_film">
-      <input type="hidden" name="table" value="<%= @table %>">
       <div class="display_results">
         <% object.instance_variables.each do |attribute| %>
           <% snip = attribute.to_s.delete("@") %>

@@ -5,7 +5,7 @@ body {
 
 .nav_column {
   background-color: #AA9739;
-  height: 70%;
+  height: 40%;
   width: 20%;
   position: absolute;
   right: 0;
@@ -13,7 +13,7 @@ body {
 
 .admin_column {
   background-color: #AA8639;
-  height: 30%;
+  height: 60%;
   width: 20%;
   position: absolute;
   right: 0;

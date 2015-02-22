@@ -23,29 +23,33 @@ require_relative 'models/patron.rb'
 require 'sinatra'
 
 enable :sessions
+set :session_secret, 'voltron'
 
-["/new/*", "/search/*"].each do |path|
+["/new/*", "/search/*", "/remove/*"].each do |path|
   before path do
-    @table = ""
-    @fields = []
     if params[:splat] == ["e"]
-      @fields = ["date", "doors_open", "start_time", "current_event", 
-                "film_id", "host_msg"]
-      @table = "events"
+      session[:fields] = ["date", "doors_open", "start_time", "current_event", "film_id", "host_msg"]
+      session[:table] = "events"
     elsif params[:splat] == ["p"]
-      @fields = ["first_name", "last_name"]
-      @table = "patrons"
-    elsif params[:splat] == ["d"]
-      @fields = ["name", "type", "description", "event_id"]
-      @table = "drinks"
+      session[:fields] = ["first_name", "last_name"]
+      session[:table] = "patrons"
+    elsif params[:splat] == ["d"]      
+      session[:fields] = ["name", "type", "description", "event_id"]
+      session[:table] = "drinks"
     else params[:splat] == ["f"]
-      @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
-      @table = "films"
+      session[:fields] = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
+      session[:table] = "films"
 
       if path == "/new/*"
         redirect to("/new_film")
-      end
-    end #if
+      end #if path      
+    end #if params
+    
+    if path == "/remove/*"
+      session[:remove] = true
+    else
+      session[:remove] = false
+    end #if path
   end #before 
 end #each
 
@@ -67,16 +71,16 @@ end
 
 get "/results" do
   # Use Active Support to capture the right class.
-  object_class = (params[:table].classify).constantize
+  object_class = (session[:table].classify).constantize
   if params[:all] == "yes"
-    @results = object_class.all(params[:table])
+    @results = object_class.all(session[:table])
   else
-    @results = object_class.search(params[:table], params[:field], params[:value])
+    @results = object_class.search(session[:table], params[:search_field], params[:value])
   end
 
   if @results.count == 0
     redirect to("/no_results")
-  end 
+  end
   erb :results
 end
 
@@ -93,9 +97,6 @@ get "/new_film" do
   if params.length != 0
     @film = Film.new(params)
   end
-  # Necessary for now; redirect looses this;
-  @fields = ["title", "year", "length", "synopsis", "trailer", "rt_rating"]
-  @table = "films"
   erb :new_film
 end
 
@@ -112,31 +113,45 @@ get "/new_film_rt" do
       @results << film
     end 
     
-    # # Old functionality for IMDB searching
+    # # Old functionality for IMDB searching I may use in the future
     # search = Imdb::Search.new("#{params[:search]}")
     # @results = search.movies
   end
-  @table = "films"
   erb :new_film_rt
 end
 
 get "/confirm" do
+  @results = []
   if params[:rt] == "yes"
     redirect to("/new_film_rt")
   end
-  @table = params.delete("table")
   @info = params
+  
+  if session[:remove] == true && session[:table] != "events"
+    @results = Event.search("events", "film_id", params[:id])
+  end
+
+  binding.pry
   erb :confirm
 end
 
 get "/save" do
-  object_type = (params["table"].classify).constantize
-  @table = params.delete("table")
-  @info = params
+  object_class = (session[:table].classify).constantize
+  object = object_class.new(params)
   
-  object = object_type.new(params)
-  @id = object.insert
+  if session[:remove] == true
+    object.delete(session[:table], params["id"])
+  else
+    @id = object.insert
+    params[:id] = "#{@id}"
+  end
+
+  @info = params
   erb :save
+end
+
+get "/remove/*" do  
+  erb :search
 end
 
 

@@ -3,9 +3,8 @@
 <div class="block1">
   <div class="search_form">
     <form action="/results">
-      <input type="hidden" name="table" value="<%= @table %>">
-      <select name="field">
-        <% @fields.each do |x| %>
+      <select name="search_field">
+        <% session[:fields].each do |x| %>
         <option value="<%= x %>"><%= x %></option>
         <% end %>
       </select>
