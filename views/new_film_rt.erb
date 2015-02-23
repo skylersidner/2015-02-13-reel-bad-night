@@ -19,7 +19,7 @@
 
 <% if @results.count != 0 %>
   <% @results.each do |object| %>
-    <form action="/new_film">
+    <form action="/new/*">
       <div class="display_results">
         <% object.instance_variables.each do |attribute| %>
           <% snip = attribute.to_s.delete("@") %>

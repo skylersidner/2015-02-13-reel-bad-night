@@ -1,4 +1,4 @@
-<h2>New...</h2>
+<h2>Edit...</h2>
 
 
 <div class="block1">
@@ -6,9 +6,6 @@
     <form action="/confirm">
         <% session[:fields].each do |x| %>
         <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
-        <% end %>
-        <% if session[:film] == true && params.count == 0 %>
-          <p><input type="checkbox" name="rt" value="yes">Search using RottenTomatoes</p>
         <% end %>
       <input type="submit">
     </form>

@@ -45,7 +45,7 @@ module Instance_Methods
   #
   # State Changes: Removes the record from the database.
   #---------------------------------------------------------
-  def delete(table_name, id)
+  def delete(table_name)
       DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{@id}")
   end  
   

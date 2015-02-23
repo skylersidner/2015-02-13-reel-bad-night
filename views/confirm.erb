@@ -10,8 +10,10 @@
       
       <% if session[:remove] == true && @results.count == 0 %>
         <input type="Submit" value="Remove this!">
-      <% elsif session[:remove] == false %>
+      <% elsif session[:remove] == false && session[:edit] == false %>
         <input type="Submit" value="Add this!">
+      <% elsif session[:edit] == true %>
+        <input type="Submit" value="Update this!">
       <% end %>
       
       <input type="button" name="Back" onclick="javascript:history.back()" value="Back">
