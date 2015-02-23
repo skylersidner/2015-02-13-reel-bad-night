@@ -23,9 +23,14 @@
       <div class="display_results">
         <% object.instance_variables.each do |attribute| %>
           <% snip = attribute.to_s.delete("@") %>
-          <p><%= "#{snip}" %>: <%= object.send(snip) %></p>
-          <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
+          <% if snip != "id" && snip != "trailer" %>
+            <p><%= "#{snip.humanize}" %>: <%= object.send(snip) %></p>
+            <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
+          <% end %>
         <% end %>
+        <div class="movie_thumb">
+          <img src="<%= @thumbs[@results.find_index(object)] %>" alt="poster thumbnail" height="200" width="135">
+        </div>
         <input type="submit" value="This one!">
       </div>
     </form>

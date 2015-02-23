@@ -73,11 +73,16 @@ h2 {
   background-color: #AA7139;
   margin: 5px;
   padding: 2px;
+  position: relative;
 }
 
 .display_results p {
   color: #FFD4AA;
 }
 
-
+.movie_thumb {
+  position: absolute;
+  right: 0;
+  top: 0;;
+}
 

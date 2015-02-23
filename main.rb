@@ -102,16 +102,29 @@ end
 
 get "/new_film_rt" do
   @results = []
+  @thumbs = []
   if params[:search] != nil
     
-    search = RottenMovie.find(:title => "#{params[:search]}", :limit => 20)
-    if search.length == nil
-      search = [search]
+    search_results = RottenMovie.find(:title => "#{params[:search]}", :limit => 20)
+    if search_results.length == nil
+      search_results = [search_results]
     end
-    search.each do |x|
+    search_results.each do |x|
       film = Film.new("title"=>"#{x.title}", "year"=>"#{x.year}", "length"=>"#{x.runtime}", "synopsis"=>"#{x.synopsis}", "trailer"=>"", "rt_rating"=>"#{x.ratings.critics_score}")
       @results << film
-    end 
+    end
+    
+    search_results.each do |y|
+      thumb = y.posters.thumbnail
+      if thumb == nil
+        thumb = "/Users/skylersidner/Code/2015-02-13-reel-bad-night/public/images/poster_default.gif"
+      end
+      if thumb.include?("tmb")
+        thumb.slice!("tmb")
+        thumb.insert(-5, "det")
+      end
+      @thumbs << thumb
+    end
     
     # # Old functionality for IMDB searching I may use in the future
     # search = Imdb::Search.new("#{params[:search]}")
@@ -130,8 +143,6 @@ get "/confirm" do
   if session[:remove] == true && session[:table] != "events"
     @results = Event.search("events", "film_id", params[:id])
   end
-
-  binding.pry
   erb :confirm
 end
 
@@ -141,9 +152,9 @@ get "/save" do
   
   if session[:remove] == true
     object.delete(session[:table], params["id"])
+    session[:remove] = false
   else
-    @id = object.insert
-    params[:id] = "#{@id}"
+    params[:id] = object.insert
   end
 
   @info = params
