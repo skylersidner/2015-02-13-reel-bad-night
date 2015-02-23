@@ -21,11 +21,6 @@ module Class_Methods
     results = DATABASE.execute("SELECT * FROM '#{table}'")
     
     convert_to_objects(results)
-#     results_as_objects = []
-#     results.each do |x|
-#       results_as_objects << self.new(x)
-#     end
-#     results_as_objects
   end
   
   #---------------------------------------------------------
@@ -48,7 +43,6 @@ module Class_Methods
     end
     
     convert_to_objects(results)
-
   end
   
   

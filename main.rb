@@ -109,7 +109,7 @@ get "/new/*" do
   create_blank_fields_hash #helper
   @object = object_class.new(@blank_fields_hash) #populate the fields blank
   
-  if params.length != 0 #check to see if a page is passing object info
+  if params[:title] != nil #check to see if a page is passing object info
     @object = object_class.new(params)
   end
   erb :new
