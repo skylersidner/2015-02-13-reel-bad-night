@@ -1,20 +1,27 @@
 <h2>Results...</h2>
 
 
-<% @results.each do |object| %>
-  <div class="display_results">
-    <form action="/confirm">
-    <% object.instance_variables.each do |attribute| %>
-      <% snip = attribute.to_s.delete("@") %>
-      <p><%= snip %>: <%= object.send(snip) %></p>
-      <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
-    <% end %>
-    <% if session[:remove] == true || session[:edit] == true %>
-      <input type="Submit" value="This one!">
-    <% end %>
-    <% if session[:edit] == true %>
-      <input type="hidden" name="edit" value="yes">
-    <% end %>
-    </form>
+<% if @results.count > 0 %>
+  <% @results.each do |object| %>
+    <div class="display_results">
+      <form action="/confirm">
+      <% object.instance_variables.each do |attribute| %>
+        <% snip = attribute.to_s.delete("@") %>
+        <p><%= snip %>: <%= object.send(snip) %></p>
+        <input type="hidden" name="<%= snip %>" 
+        value="<%= object.send(snip) %>">
+      <% end %>
+      <% if session[:remove] == true || session[:edit] == true %>
+        <input type="Submit" value="This one!">
+      <% end %>
+      <% if session[:edit] == true %>
+        <input type="hidden" name="edit" value="yes">
+      <% end %>
+      </form>
+    </div>
+  <% end %>
+<% else %>
+  <div class="block1">
+    <p>No results matched your search!<p>
   </div>
 <% end %>

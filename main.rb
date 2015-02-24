@@ -14,7 +14,7 @@ require_relative 'db_setup.rb'
 require_relative 'modules/instance_module'
 require_relative 'modules/class_module'
 require_relative 'modules/route_helpers_module'
-include ErbHelpers
+include RouteHelpers
 
 require_relative 'models/film.rb'
 require_relative 'models/event.rb'
@@ -25,10 +25,10 @@ require_relative 'models/patron.rb'
 require 'sinatra'
 
 enable :sessions
-set :session_secret, 'voltron'
+set :session_secret, 'optimus'
 
 ["/new/*", "/search/*", "/edit/*", "/remove/*"].each do |path|
-  before path do
+  before path do #set relevant fields array for dropdown
     if params[:splat] == ["e"]
       session[:fields] = ["date", "doors_open", "start_time", "current_event", "film_id", "host_msg"]
       session[:table] = "events"
@@ -47,7 +47,9 @@ set :session_secret, 'voltron'
       session[:film] = true
     end #if params
     
-    if path == "/new/*"
+    
+    #flag for current set of operations
+    if path == "/new/*" 
       session[:new] = true
     else
       session[:new] = false
@@ -94,24 +96,17 @@ get "/results" do
     @results = object_class.search(session[:table], params[:search_field], params[:value])
   end
 
-  if @results.count == 0
-    redirect to("/no_results")
-  end
   erb :results
-end
-
-get "/no_results" do
-  erb :no_results
 end
 
 get "/new/*" do
   object_class = (session[:table].classify).constantize #capture object type
   create_blank_fields_hash #helper
-  @object = object_class.new(@blank_fields_hash) #populate the fields blank
-  
-  if params[:title] != nil #check to see if a page is passing object info
+  @object = object_class.new(@blank_fields_hash) #populate fields
+  if params[:title] != nil #check to see if a page is passing film_id info
     @object = object_class.new(params)
   end
+  
   erb :new
 end
 
@@ -119,27 +114,13 @@ get "/new_film_rt" do
   @results = []
   @thumbs = []
   if params[:search] != nil
-    
-    search_results = RottenMovie.find(:title => "#{params[:search]}", :limit => 20)
-    if search_results.length == nil #check if search returned a single object
-      search_results = [search_results] #make it an array
+    get_rt_search_results #helper
+    if @results.count == 0
+      @no_results = true
     end
-    search_results.each do |x| #capture relevant info from rottentomatoes
-      film = Film.new("title"=>"#{x.title}", "year"=>"#{x.year}", "length"=>"#{x.runtime}", "synopsis"=>"#{x.synopsis}", "trailer"=>"", "rt_rating"=>"#{x.ratings.critics_score}")
-      @results << film
-
-      thumb = x.posters.thumbnail #capture an image of the poster
-      if thumb == nil #if there isn't one, use default
-        thumb = "/Users/skylersidner/Code/2015-02-13-reel-bad-night/public/images/poster_default.gif"
-      end
-      if thumb.include?("tmb") #minor adjustment for better image, if possible
-        thumb.slice!("tmb")
-        thumb.insert(-5, "det")
-      end
-      @thumbs << thumb
-    end
-
   end
+  
+  binding.pry
   erb :new_film_rt
 end
 
@@ -147,14 +128,15 @@ get "/confirm" do
   @results = []
   @info = params
   
-  if params[:edit] == "yes"
-    erb :edit
-  end
-  
   if params[:rt] == "yes" #check if they are using rottentomatoes
     redirect to("/new_film_rt")
   end
   
+  if params[:edit] == "yes" #check if they are editing
+    erb :edit
+  end
+  
+  #check if they are removing and there is an associated event
   if session[:remove] == true && session[:table] != "events"
     @results = Event.search("events", "film_id", params[:id])
   end

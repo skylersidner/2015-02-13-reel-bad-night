@@ -29,11 +29,17 @@
           <% end %>
         <% end %>
         <div class="movie_thumb">
-          <img src="<%= @thumbs[@results.find_index(object)] %>" alt="poster thumbnail" height="200" width="135">
+          <img src="<%= @thumbs[@results.find_index(object)] %>" alt="poster thumbnail" height="100" width="67">
         </div>
         <input type="submit" value="This one!">
       </div>
     </form>
   <% end %>
   <a href="#top">Back to top</a>
+<% end %>
+
+<% if @no_results == true %>
+  <div class="block1">
+    <p>No results matched your search!<p>
+  </div>
 <% end %>
