@@ -19,6 +19,11 @@ get "/confirm/*" do
   end
   
   if params[:edit] == "yes" #check if they are editing
+    object_class = (session[:table].classify).constantize
+    @object = object_class.new(params)
+    
+    binding.pry # BROKEN!!! FIGURE THIS OUT!!!!!!!!!!!!
+    request.path_info = "/manipulate/edit"
     erb :"manipulate/edit"
   end
   
