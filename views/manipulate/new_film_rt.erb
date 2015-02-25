@@ -8,7 +8,7 @@
 
 
 <div class="block2">
-  <form action="/new_film_rt">
+  <form action="/new_film_rt/f">
     <select name="search_by">
       <option value="title">Title</option>
     </select>
@@ -19,7 +19,7 @@
 
 <% if @results.count != 0 %>
   <% @results.each do |object| %>
-    <form action="/new/*">
+    <form action="/new/<%= params[:splat][0] %>">
       <div class="display_results">
         <% object.instance_variables.each do |attribute| %>
           <% snip = attribute.to_s.delete("@") %>

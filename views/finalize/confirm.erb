@@ -1,7 +1,7 @@
 <h2>Confirm...</h2>
 
 <div class="block1">
-  <form action="/save">
+  <form action="/save/<%= params[:splat][0] %>">
     <div class="display_results">
       <% @info.each do |key, value| %>
         <p><%= key %>: <%= value %></p>
@@ -27,7 +27,7 @@
   </div>
   <% @results.each do |object| %>
     <div class="display_results">
-      <form action="/confirm">
+      <form action="/confirm/<%= params[:splat][0] %>">
       <% object.instance_variables.each do |attribute| %>
         <% snip = attribute.to_s.delete("@") %>
         <p><%= snip %>: <%= object.send(snip) %></p>

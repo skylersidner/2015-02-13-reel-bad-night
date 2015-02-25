@@ -2,7 +2,7 @@
 
 <div class="block1">
   <div class="search_form">
-    <form action="/results">
+    <form action="/results/<%= params[:splat][0] %>">
       <select name="search_field">
         <% session[:fields].each do |x| %>
         <option value="<%= x %>"><%= x %></option>

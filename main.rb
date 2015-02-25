@@ -8,12 +8,13 @@ Rotten.api_key = "5su6tan6prmdssxst2q9xgv6"
 
 require 'active_support'
 require 'active_support/Inflector'
+require 'sinatra'
 
-require_relative 'db_setup.rb'
+require_relative 'database/db_setup.rb'
 
 require_relative 'modules/instance_module'
 require_relative 'modules/class_module'
-require_relative 'modules/route_helpers_module'
+require_relative 'helpers/route_helpers_module'
 include RouteHelpers
 
 require_relative 'models/film.rb'
@@ -21,8 +22,11 @@ require_relative 'models/event.rb'
 require_relative 'models/drink.rb'
 require_relative 'models/patron.rb'
 
+require_relative "controllers/index_controller.rb"
+require_relative "controllers/manipulate_controller.rb"
+require_relative "controllers/finalize_controller.rb"
 
-require 'sinatra'
+
 
 enable :sessions
 set :session_secret, 'optimus'
@@ -70,104 +74,7 @@ set :session_secret, 'optimus'
   end #before path
 end #each
 
-get "/" do
-  # .search returns an array; this adjusts to the object, specifically
-  array = Event.search("events", "current_event", 2)
-  @current_event = array[0]
-  array = Film.search("films", "id", "#{@current_event.film_id}")
-  @current_film = array[0]
-  array = Event.search("events", "current_event", 1)
-  @previous_event = array[0]
-  array = Film.search("films", "id", "#{@previous_event.film_id}")
-  @previous_film = array[0]
-  erb :homepage
-end
 
-get "/search/*" do
-  erb :search
-end
 
-get "/results" do
-  # Use Active Support to capture the right class.
-  object_class = (session[:table].classify).constantize
-  if params[:all] == "yes" #check if they want all of that type
-    @results = object_class.all(session[:table])
-  else
-    @results = object_class.search(session[:table], params[:search_field], params[:value])
-  end
 
-  erb :results
-end
-
-get "/new/*" do
-  object_class = (session[:table].classify).constantize #capture object type
-  create_blank_fields_hash #helper
-  @object = object_class.new(@blank_fields_hash) #populate fields
-  if params[:title] != nil #check to see if a page is passing film_id info
-    @object = object_class.new(params)
-  end
-  
-  erb :new
-end
-
-get "/new_film_rt" do
-  @results = []
-  @thumbs = []
-  if params[:search] != nil
-    get_rt_search_results #helper
-    if @results.count == 0
-      @no_results = true
-    end
-  end
-  
-  binding.pry
-  erb :new_film_rt
-end
-
-get "/confirm" do
-  @results = []
-  @info = params
-  
-  if params[:rt] == "yes" #check if they are using rottentomatoes
-    redirect to("/new_film_rt")
-  end
-  
-  if params[:edit] == "yes" #check if they are editing
-    erb :edit
-  end
-  
-  #check if they are removing and there is an associated event
-  if session[:remove] == true && session[:table] != "events"
-    @results = Event.search("events", "film_id", params[:id])
-  end
-
-  erb :confirm
-end
-
-get "/save" do
-  object_class = (session[:table].classify).constantize
-  object = object_class.new(params)
-  
-  if session[:remove] == true
-    object.delete(session[:table])
-    session[:remove] = false
-  elsif session[:new] == true
-    params[:id] = object.insert
-    session[:new] = false
-  elsif session[:edit] == true
-    object.save(session[:table])
-    session[:edit] = false
-  end
-
-  @info = params
-  erb :save
-end
-
-get "/remove/*" do  
-  erb :search
-end
-
-get "/edit/*" do
-  erb :search
-end
 
