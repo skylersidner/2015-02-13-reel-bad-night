@@ -1,0 +1,20 @@
+<h2><%= @title %></h2>
+
+<div class="block1">
+  <div class="new_form">
+    <form action="/<%= @title.downcase %>/<%= @object.id %>/update">
+        <% @table.each do |x| %>
+          <% if x == "id" %>
+            <p>ID: <%= @object.id %>
+          <% else %>
+            <p><%= "#{x.humanize}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
+          <% end #if %>
+        <% end #each %>
+      <input type="submit" value="Update">
+    </form>
+    <form action="/<%= @title.downcase %>/<%= @object.id %>/confirm">
+      <input type="hidden" name="id" value="<%= @object.id %>">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+</div>

@@ -6,13 +6,13 @@ module Instance_Methods
   # Public: #save
   # Saves record information from an object to the database.
   #
-  # Parameters: None
+  # Parameters: None.
   #
-  # Returns: None
+  # Returns: An Array with a Hash of data for the updated record.
   #
   # State Changes: Updates data in the database.
   #---------------------------------------------------------
-  def save(table_name)
+  def save
     attributes = []
     components_array = []
 
@@ -20,33 +20,33 @@ module Instance_Methods
       attributes << i.to_s.delete("@")
     end
 
+    query_hash = {}
+
     attributes.each do |a|
       value = self.send(a)
-      if value.is_a?(Integer) || value.is_a?(Float)
-        components_array << "#{a} = #{self.send(a)}"
-      else
-        components_array << "#{a} = '#{self.send(a)}'"
-      end #if
-    end #each
-
-    q = components_array.join(", ")
-
-    DATABASE.execute("UPDATE #{table_name} SET #{q} WHERE id = '#{@id}'")
-  end #method
+      query_hash[a] = value
+    end
+  
+    query_hash.each do |key, value|
+      DATABASE.execute("UPDATE #{self.class.to_s.tableize} SET #{key} = ? WHERE id = #{id}", value)
+    end
+    DATABASE.execute("SELECT * FROM #{self.class.to_s.tableize} WHERE id = '#{@id}'")
+  end #method 
   
   #---------------------------------------------------------
   # Public: #delete
   # Removes a record from the database, based on its ID
   #
-  # Parameter:
-  # id  - Integer: The ID of the record to be removed.
+  # Parameters: None
   #
-  # Returns: None
+  # Returns: An Integer of the ID where the record was just removed.
   #
   # State Changes: Removes the record from the database.
   #---------------------------------------------------------
-  def delete(table_name)
-      DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{@id}")
+  def delete
+    id = @id
+    DATABASE.execute("DELETE FROM #{self.class.to_s.tableize} WHERE id = #{@id}")
+    id
   end  
-  
+
 end #class

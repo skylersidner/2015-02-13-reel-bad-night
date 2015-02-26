@@ -1,12 +1,12 @@
-<h2><%= @title.singularize %> #<%= @object.id %></h2>
+<h2>Delete <%= @title.singularize %> #<%= @object.id %>?</h2>
 
 <div class="display">
-  <form action="/<%= @title.downcase %>/<%= @object.id %>/edit">
+  <form action="/<%= @title.downcase %>/<%= @object.id %>/delete">
     <% @object.instance_variables.each do |attribute| %>
       <% snip = attribute.to_s.delete("@") %>
-      <p><%= snip.humanize %>: <%= @object.send(snip) %></p>
+      <p><%= snip %>: <%= @object.send(snip) %></p>
       <input type="hidden" name="<%= snip %>" value="<%= @object.send(snip) %>">
     <% end #object.each %>
-    <input type="submit" value="Edit/Delete">
+    <input type="submit" value="Delete">
   </form>
 </div>

@@ -17,8 +17,8 @@ module Class_Methods
   # Returns: An array of objects.
   #
   # State Changes: None
-  def all(table)
-    results = DATABASE.execute("SELECT * FROM '#{table}'")
+  def all
+    results = DATABASE.execute("SELECT * FROM '#{self.to_s.tableize}'")
     
     convert_to_objects(results)
   end
@@ -29,27 +29,28 @@ module Class_Methods
   #
   # Parameters:
   # field_name  - String: The name of field in the database.
-  # choice      - String/Integer: The corresponding values for that field.
+  # value       - String/Integer: The corresponding values for that field.
   #
   # Returns: An array of objects matching the search.
   #
   # State Changes: None
   #---------------------------------------------------------
-  def search(table_name, field_name, value)
+  def search(field_name, value)
     if value.is_a?(String)
-      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}='#{value}'")
+      results = DATABASE.execute("SELECT * FROM #{self.to_s.tableize} WHERE #{field_name}='#{value}'")
     else
-      results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{value}")
+      results = DATABASE.execute("SELECT * FROM #{self.to_s.tableize} WHERE #{field_name}=#{value}")
     end
     
     convert_to_objects(results) #returns an array of objects
   end
   
+  # NEEDS DOCUMENTATION
   
   # Method for finding a specific record when you know the id.
   # This is the same as search, but shorter, more specific.
-  def find_specific(table_name, id)
-    results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id='#{id}'")
+  def find_specific(id)
+    results = DATABASE.execute("SELECT * FROM #{self.to_s.tableize} WHERE id='#{id}'")
     object = self.new(results[0])
     object
   end

@@ -1,10 +1,12 @@
-<h2><%= @title %></h2>
+<h2>Create a new <%= @title.singularize %></h2>
 
 <div class="block1">
   <div class="new_form">
     <form action="/<%= @title.downcase %>/save">
         <% @table.each do |x| %>
-        <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
+          <% if x != "id" %>
+            <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
+            <% end %>
         <% end %>
         <% if @title == "Films" && @object.title == "" %>
           <p><input type="checkbox" name="rt" value="yes">Search using RottenTomatoes</p>
