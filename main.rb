@@ -26,6 +26,8 @@ require_relative "controllers/index_controller.rb"
 require_relative "controllers/manipulate_controller.rb"
 require_relative "controllers/finalize_controller.rb"
 
+require_relative "controllers/events_controller.rb"
+
 
 
 enable :sessions

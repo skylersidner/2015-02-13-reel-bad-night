@@ -1,16 +1,15 @@
-<h2>New...</h2>
-
+<h2><%= @title %></h2>
 
 <div class="block1">
   <div class="new_form">
-    <form action="/confirm/<%= params[:splat][0] %>">
-        <% session[:fields].each do |x| %>
+    <form action="/<%= @title.downcase %>/save">
+        <% @table.each do |x| %>
         <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
         <% end %>
-        <% if session[:film] == true && @object.title == "" %>
+        <% if @title == "Films" && @object.title == "" %>
           <p><input type="checkbox" name="rt" value="yes">Search using RottenTomatoes</p>
         <% end %>
-      <input type="submit">
+      <input type="submit" value="Add This">
     </form>
   </div>
 </div>

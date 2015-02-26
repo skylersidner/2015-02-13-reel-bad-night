@@ -42,17 +42,17 @@ module Class_Methods
       results = DATABASE.execute("SELECT * FROM #{table_name} WHERE #{field_name}=#{value}")
     end
     
-    convert_to_objects(results)
+    convert_to_objects(results) #returns an array of objects
   end
   
   
-  # # Method for finding a specific record when you know the id.
-  # # This is the same as search, but shorter, more specific.
-  # def specific(table_name, id)
-  #   results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id=#{id}")
-  #   obj = self.new(results)
-  #   obj
-  # end
+  # Method for finding a specific record when you know the id.
+  # This is the same as search, but shorter, more specific.
+  def find_specific(table_name, id)
+    results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id='#{id}'")
+    object = self.new(results[0])
+    object
+  end
   
 
   private

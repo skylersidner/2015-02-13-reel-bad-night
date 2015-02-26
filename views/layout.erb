@@ -13,46 +13,46 @@
       <div class="nav_menu">
         <ul>
           <li><a href="/">Home</a></li>
-          <li>Search existing...
-          <ul>
-            <li><a href="/search/e">Events</a></li>
-            <li><a href="/search/p">Patrons</a></li>
-            <li><a href="/search/d">Drinks</a></li>
-            <li><a href="/search/f">Films</a></li>
-          </ul>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/patrons">Patrons</a></li>
+          <li><a href="/drinks">Drinks</a></li>
+          <li><a href="/films">Films</a></li>
         </ul>
       </div>
     </div>
     <div class="admin_column">
       <h3>Administrative</h3>
       <ul>
-        <li>Create a new...</li>
+        <li>Events</li>
         <ul>
-          <li><a href="/new/e">Event</a></li>
-          <li><a href="/new/p">Patron</a></li>
-          <li><a href="/new/d">Drink</a></li>
-          <li><a href="/new/f">Film</a></li>
+          <li><a href="/events/new">New</a></li>
+          <li><a href="/events/edit">Edit</a></li>
+          <li><a href="/events/remove">Remove</a></li>
         </ul>
-        <li>Edit an existing...</li>
+        <li>Patrons</li>
         <ul>
-          <li><a href="/edit/e">Event</a></li>
-          <li><a href="/edit/p">Patron</a></li>
-          <li><a href="/edit/d">Drink</a></li>
-          <li><a href="/edit/f">Film</a></li>
+          <li><a href="/patrons/new">New</a></li>
+          <li><a href="/patrons/edit">Edit</a></li>
+          <li><a href="/patrons/remove">Remove</a></li>
         </ul>
-        <li>Remove an existing...</li>
+        <li>Drinks</li>
         <ul>
-          <li><a href="/remove/e">Event</a></li>
-          <li><a href="/remove/p">Patron</a></li>
-          <li><a href="/remove/d">Drink</a></li>
-          <li><a href="/remove/f">Film</a></li>
+          <li><a href="/drinks/new">New</a></li>
+          <li><a href="/drinks/edit">Edit</a></li>
+          <li><a href="/drinks/remove">Remove</a></li>
+        </ul>
+        <li>Films</li>
+        <ul>
+          <li><a href="/films/new">New</a></li>
+          <li><a href="/films/edit">Edit</a></li>
+          <li><a href="/films/remove">Remove</a></li>
         </ul>
       </ul>
     </div>
     <div class="banner">
       <h1>A Reel Bad Night</h1>
     </div>
-    <div class="display">
+    <div class="layout">
       <%= yield %>
     </div> 
   </body>

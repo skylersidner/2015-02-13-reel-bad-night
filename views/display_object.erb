@@ -1,0 +1,8 @@
+<h2><%= @title.singularize %> #<%= @object.id %></h2>
+
+<div class="display">
+  <% @object.instance_variables.each do |attribute| %>
+    <% snip = attribute.to_s.delete("@") %>
+    <p><%= snip %>: <%= @object.send(snip) %></p>
+  <% end %>
+</div>
