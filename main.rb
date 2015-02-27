@@ -23,13 +23,10 @@ require_relative 'models/drink.rb'
 require_relative 'models/patron.rb'
 
 require_relative "controllers/index_controller.rb"
-# require_relative "controllers/manipulate_controller.rb"
-# require_relative "controllers/finalize_controller.rb"
-
-require_relative "controllers/events_controller.rb"
 require_relative "controllers/films_controller.rb"
-require_relative "controllers/patrons_controller.rb"
+require_relative "controllers/events_controller.rb"
 require_relative "controllers/drinks_controller.rb"
+require_relative "controllers/patrons_controller.rb"
 
 
 

@@ -2,15 +2,21 @@
 
 <p><a href="/<%= @title.downcase %>/search">Search for a specific <%= @title.downcase.singularize %></a></p>
 
-<% @results.each do |object| %>
-  <div class="display">
-    <form action="/<%= @title.downcase %>/<%= object.id %>/show">
-      <% object.instance_variables.each do |attribute| %>
-        <% snip = attribute.to_s.delete("@") %>
-        <p><%= snip.humanize %>: <%= object.send(snip) %></p>
-        <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
-      <% end #object.each %>
-      <input type="submit" value="See this one">
-    </form>
+<% if @results.count > 0 %>
+  <% @results.each do |object| %>
+    <div class="display">
+      <form action="/<%= @title.downcase %>/<%= object.id %>/show">
+        <% object.instance_variables.each do |attribute| %>
+          <% snip = attribute.to_s.delete("@") %>
+          <p><%= snip.humanize %>: <%= object.send(snip) %></p>
+          <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
+        <% end #object.each %>
+        <input type="submit" value="See this one">
+      </form>
+    </div>
+  <% end %>
+<% else %>
+  <div class="block1">
+    <p>No results matched your search!<p>
   </div>
 <% end %>
