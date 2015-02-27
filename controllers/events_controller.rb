@@ -46,7 +46,7 @@ end
 get "/events/:id/update" do
   @object = Event.new(params)
   @object.save
-  redirect :"/events/#{@object.id}"
+  redirect :"/events/#{@object.id}/show"
 end
 
 get "/events/:id/confirm" do
