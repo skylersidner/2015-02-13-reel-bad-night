@@ -26,10 +26,10 @@ module Instance_Methods
       value = self.send(a)
       query_hash[a] = value
     end
-  
     query_hash.each do |key, value|
       DATABASE.execute("UPDATE #{self.class.to_s.tableize} SET #{key} = ? WHERE id = #{id}", value)
     end
+    
     DATABASE.execute("SELECT * FROM #{self.class.to_s.tableize} WHERE id = '#{@id}'")
   end #method 
   

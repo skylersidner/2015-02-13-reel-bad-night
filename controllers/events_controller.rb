@@ -20,20 +20,20 @@ end
 get "/events/save" do
   @new = Event.new(params)
   @new.insert
-  redirect :"/#{@new.id}"
+  redirect :"/events/#{@new.id}/show"
 end
 
 get "/events/search" do
   erb :"/search"
 end
 
-get "events/search_results" do
+get "/events/search_results" do
   get_search_results #helper
   @admin = true
   erb :"/display_results"
 end
 
-get "/events/:id" do
+get "/events/:id/show" do
   @object = Event.find_specific(params[:id])
   erb :"/display_object"
 end
@@ -44,9 +44,8 @@ get "/events/:id/edit" do
 end
 
 get "/events/:id/update" do
-  @object = Event.find_specific(params[:id])
+  @object = Event.new(params)
   @object.save
-  binding.pry # YOU ARE WORKING HERE!!!!!!!!!!
   redirect :"/events/#{@object.id}"
 end
 

@@ -73,6 +73,7 @@ h2 {
   background-color: #AA7139;
   margin: 5px;
   padding: 2px;
+  position: relative;
 }
 
 .display p {
