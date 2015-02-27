@@ -8,13 +8,13 @@ end
 
 get "/events" do
   @results = Event.all
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/events/new" do
   create_blank_fields_hash #helper
   @object = Event.new(@blank_fields_hash) #populate fields
-  erb :"/new"
+  erb :"/manipulate/new"
 end
 
 get "/events/save" do
@@ -24,23 +24,23 @@ get "/events/save" do
 end
 
 get "/events/search" do
-  erb :"/search"
+  erb :"/index/search"
 end
 
 get "/events/search_results" do
   get_search_results #helper
   @admin = true
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/events/:id/show" do
   @object = Event.find_specific(params[:id])
-  erb :"/display_object"
+  erb :"/display/display_object"
 end
 
 get "/events/:id/edit" do
   @object = Event.find_specific(params[:id])
-  erb :"/edit"  
+  erb :"/manipulate/edit"  
 end
 
 get "/events/:id/update" do
@@ -51,7 +51,7 @@ end
 
 get "/events/:id/confirm" do
   @object = Event.find_specific(params[:id])
-  erb :"/confirm"
+  erb :"/manipulate/confirm"
 end
 
 get "/events/:id/delete" do

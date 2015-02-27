@@ -8,13 +8,13 @@ end
 
 get "/drinks" do
   @results = Drink.all
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/drinks/new" do
   create_blank_fields_hash #helper
   @object = Drink.new(@blank_fields_hash) #populate fields
-  erb :"/new"
+  erb :"/manipulate/new"
 end
 
 get "/drinks/save" do
@@ -24,23 +24,23 @@ get "/drinks/save" do
 end
 
 get "/drinks/search" do
-  erb :"/search"
+  erb :"/index/search"
 end
 
 get "/drinks/search_results" do
   get_search_results #helper
   @admin = true
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/drinks/:id/show" do
   @object = Drink.find_specific(params[:id])
-  erb :"/display_object"
+  erb :"/display/display_object"
 end
 
 get "/drinks/:id/edit" do
   @object = Drink.find_specific(params[:id])
-  erb :"/edit"  
+  erb :"/manipulate/edit"  
 end
 
 get "/drinks/:id/update" do
@@ -51,7 +51,7 @@ end
 
 get "/drinks/:id/confirm" do
   @object = Drink.find_specific(params[:id])
-  erb :"/confirm"
+  erb :"/manipulate/confirm"
 end
 
 get "/drinks/:id/delete" do

@@ -8,7 +8,7 @@ end
 
 get "/films" do
   @results = Film.all
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/films/new" do
@@ -18,7 +18,7 @@ get "/films/new" do
     create_blank_fields_hash #helper
     @object = Film.new(@blank_fields_hash) #populate fields
   end
-  erb :"/new"
+  erb :"/manipulate/new"
 end
 
 get "/films/save" do
@@ -39,27 +39,27 @@ get "/films/new/rt" do
       @no_results = true
     end
   end
-  erb :"/new_film_rt"
+  erb :"/manipulate/new_film_rt"
 end
 
 get "/films/search" do
-  erb :"/search"
+  erb :"/index/search"
 end
 
 get "/films/search_results" do
   get_search_results #helper
   @admin = true
-  erb :"/display_results"
+  erb :"/display/display_results"
 end
 
 get "/films/:id/show" do
   @object = Film.find_specific(params[:id])
-  erb :"/display_object"
+  erb :"/display/display_object"
 end
 
 get "/films/:id/edit" do
   @object = Film.find_specific(params[:id])
-  erb :"/edit"  
+  erb :"/manipulate/edit"  
 end
 
 get "/films/:id/update" do
@@ -70,7 +70,7 @@ end
 
 get "/films/:id/confirm" do
   @object = Film.find_specific(params[:id])
-  erb :"/confirm"
+  erb :"/manipulate/confirm"
 end
 
 get "/films/:id/delete" do
