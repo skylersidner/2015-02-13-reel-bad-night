@@ -13,8 +13,6 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS films
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS events
                  (id INTEGER PRIMARY KEY,
-                 date TEXT NOT NULL,
-                 doors_open TEXT NOT NULL,
                  start_time TEXT NOT NULL,
                  host_msg TEXT,
                  current_event INTEGER,
