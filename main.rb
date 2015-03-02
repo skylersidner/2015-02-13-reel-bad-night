@@ -8,12 +8,15 @@ Rotten.api_key = "5su6tan6prmdssxst2q9xgv6"
 
 require 'active_support'
 require 'active_support/Inflector'
+require 'active_support/core_ext/date_time/conversions'
 require 'sinatra'
 
 require_relative 'database/db_setup.rb'
 
 require_relative 'modules/instance_module'
 require_relative 'modules/class_module'
+require_relative 'modules/date_time_module'
+include Date_Time_Methods
 require_relative 'helpers/route_helpers_module'
 include RouteHelpers
 

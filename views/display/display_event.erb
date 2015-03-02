@@ -1,0 +1,12 @@
+<h2>Event #<%= @object.id %></h2>
+
+<div class="display">
+  <form action="/events/<%= @object.id %>/edit">
+    <p>ID#: <%= @object.id %></p>
+    <p>When: <%= @object.start %></p>
+    <p>Film: <%= @object.film_title %></p>
+    <p><%= @object.host_msg %></p>
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <input type="submit" value="Edit/Delete">
+  </form>
+</div>

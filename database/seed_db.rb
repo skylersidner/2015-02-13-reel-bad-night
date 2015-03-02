@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-DATABASE = SQLite3::Database.new("database/reel_bad.db")
+DATABASE = SQLite3::Database.new("reel_bad.db")
 
 DATABASE.execute("INSERT INTO patrons (first_name, last_name) VALUES
                   ('Skyler', 'Sidner'),
@@ -55,15 +55,15 @@ DATABASE.execute("INSERT INTO events (start_time,
                   current_event, film_id, host_msg) VALUES
                   ('2014-06-06-20-00', 0, 2, ?)", "#{msg1}")
 
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+DATABASE.execute("INSERT INTO events (start_time, 
                   current_event, film_id, host_msg) VALUES
                   ('2014-09-05-20-00', 0, 3, ?)", "#{msg2}")
                   
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+DATABASE.execute("INSERT INTO events (start_time, 
                   current_event, film_id, host_msg) VALUES
                   ('2014-10-03-20-00', 1, 1, ?)", "#{msg3}")
                   
-DATABASE.execute("INSERT INTO events (date, doors_open, start_time, 
+DATABASE.execute("INSERT INTO events (start_time, 
                   current_event, film_id, host_msg) VALUES
                   ('2014-12-05-20-00', 2, 5, ?)", "#{msg4}")
 

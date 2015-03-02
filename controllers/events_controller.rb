@@ -1,14 +1,17 @@
 ["/events", "/events/*"].each do |path|
   before path do
     @title = "Events"
-    @table = ["id", "date", "doors_open", "start_time", "current_event", "film_id", "host_msg"]
+    @table = ["id", "start_time", "current_event", "film_id", "host_msg"]
   end
 end
 
 
 get "/events" do
   @results = Event.all
-  erb :"/display/display_results"
+  @results.each do |x|
+    x.prepare_for_display
+  end
+  erb :"/display/display_events"
 end
 
 get "/events/new" do
@@ -35,7 +38,8 @@ end
 
 get "/events/:id/show" do
   @object = Event.find_specific(params[:id])
-  erb :"/display/display_object"
+  @object.prepare_for_display
+  erb :"/display/display_event"
 end
 
 get "/events/:id/edit" do

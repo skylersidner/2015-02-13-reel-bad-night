@@ -49,4 +49,4 @@ module Instance_Methods
     id
   end  
 
-end #class
+end #module

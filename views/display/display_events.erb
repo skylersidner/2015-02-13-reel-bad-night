@@ -1,0 +1,18 @@
+<h2>Events</h2>
+
+<div class="block1">
+  <p><a href="/events/search">Search for a specific event</a></p>
+  <p><a href="/events/new">Make a new event</a></p>
+</div>
+<% @results.each do |object| %>
+  <div class="display">
+    <form action="/events/<%= object.id %>/show">
+      <p>ID#: <%= object.id %></p>
+      <p>When: <%= object.start %></p>
+      <p>Film: <%= object.film_title %></p>
+      <p><%= object.host_msg %></p>
+      <input type="hidden" name="id" value="<%= object.id %>">
+      <input type="submit" value="See this one">
+    </form>
+  </div>
+<% end %>

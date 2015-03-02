@@ -1,6 +1,9 @@
 <h2><%= @title %></h2>
 
-<p><a href="/<%= @title.downcase %>/search">Search for a specific <%= @title.downcase.singularize %></a></p>
+<div class="block1">
+  <p><a href="/<%= @title.downcase %>/search">Search for a specific <%= @title.downcase.singularize %></a></p>
+  <p><a href="/<%= @title.downcase %>/new">Make a new <%= @title.downcase.singularize %></a></p>
+</div>
 
 <% if @results.count > 0 %>
   <% @results.each do |object| %>
