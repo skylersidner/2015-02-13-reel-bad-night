@@ -2,7 +2,17 @@
 
 module RouteHelpers
   
-  # NEEDS DOCUMENTATION
+  # Public: #create_blank_fields_hash
+  # Takes an array (@table) of field names for that associated
+  # table and creates blank string hash values for populating
+  # empty form text blocks.
+  #
+  # Parameters: None
+  #
+  # Returns: A hash with field-based keys that point to an
+  # an empty string.
+  #
+  # State Changes: None
   def create_blank_fields_hash
     @blank_fields_hash = {}
     @table.each do |field|
@@ -11,8 +21,15 @@ module RouteHelpers
     @blank_fields_hash
   end
   
-  # NEEDS DOCUMENTATION
-  
+  # Public: #get_rt_search_results
+  # Uses the rottentomatoes API gem to create Film objects out of
+  # search results.
+  #
+  # Parameters: None
+  #
+  # Returns: An array of Film objects.
+  #
+  # State Changes: @results is populated with objects.
   def get_rt_search_results
     search_results = RottenMovie.find(:title => "#{params[:search]}", :limit => 20)
     if search_results.length == nil #check if search returned a single object
@@ -31,8 +48,14 @@ module RouteHelpers
     @results
   end #method
   
-  # NEEDS DOCUMENTATION
-  
+  # Public: #get_search_results
+  # Looks for specific records in the database.
+  #
+  # Parameters: None
+  #
+  # Returns: An array of objects based on search results.
+  #
+  # State Changes: @results is populated with objects.
   def get_search_results
     # Use Active Support to capture the right class.
     object_class = (@title.classify).constantize
@@ -40,8 +63,8 @@ module RouteHelpers
       @results = object_class.all
     else
       @results = object_class.search(params[:search_field], params[:value])
-    end
+    end #if
     @results
-  end
+  end #method
   
-end
+end #module
