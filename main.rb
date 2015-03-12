@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'bundler/setup'
+
+
 require 'pry'
 require 'imdb'
 
@@ -10,6 +14,8 @@ require 'active_support'
 require 'active_support/Inflector'
 require 'active_support/core_ext/date_time/conversions'
 require 'sinatra'
+
+Bundler.require(:default)
 
 require_relative 'database/db_setup.rb'
 
