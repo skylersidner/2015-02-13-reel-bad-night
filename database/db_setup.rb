@@ -1,4 +1,3 @@
-DATABASE = SQLite3::Database.new("database/reel_bad.db")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS films
                  (id INTEGER PRIMARY KEY,
@@ -29,7 +28,8 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS drinks
 DATABASE.execute("CREATE TABLE IF NOT EXISTS patrons
                   (id INTEGER PRIMARY KEY,
                   first_name TEXT NOT NULL,
-                  last_name TEXT NOT NULL)")
+                  last_name TEXT NOT NULL,
+                  password TEXT NOT NULL)")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS events_patrons
                  (event_id INTEGER NOT NULL,
