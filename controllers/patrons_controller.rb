@@ -8,7 +8,6 @@ end
 
 get "/patrons" do
   @results = Patron.all
-  binding.pry
   erb :"/display/display_results"
 end
 

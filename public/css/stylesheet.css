@@ -3,6 +3,8 @@ body {
   background-color: black;
 }
 
+
+
 .nav_column {
   background-color: #AA9539;
   display: block;
@@ -43,6 +45,37 @@ body {
   color: #FFEFAA;
 }
 
+.login_button {
+  position: fixed;
+  top: 15px;
+  right: 10px;
+}
+
+.login_button h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.banner {
+  background-color: #AA8239;
+  height: auto;
+  position: relative;
+  top: 70px;
+}
+
+.login {
+
+}
+
+
+
+.layout {
+  position: relative;
+  top: 70px;
+}
+
+
+
 .block1 {
   background-color: #AA8239;
 }
@@ -66,17 +99,7 @@ body {
   color: #FFE1AA;
 }
 
-.banner {
-  background-color: #AA8239;
-  height: auto;
-  position: relative;
-  top: 70px;
-}
 
-.layout {
-  position: relative;
-  top: 70px;
-}
 
 .previous {
   background-color: #AA7139;
