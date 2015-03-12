@@ -14,6 +14,8 @@ require 'active_support'
 require 'active_support/Inflector'
 require 'active_support/core_ext/date_time/conversions'
 require 'sinatra'
+require 'sinatra/activerecord'
+require 'sqlite3'
 
 Bundler.require(:default)
 

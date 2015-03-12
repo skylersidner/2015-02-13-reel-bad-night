@@ -1,5 +1,3 @@
-require 'sqlite3'
-
 DATABASE = SQLite3::Database.new("database/reel_bad.db")
 
 DATABASE.execute("CREATE TABLE IF NOT EXISTS films
