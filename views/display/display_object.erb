@@ -3,9 +3,11 @@
 <div class="display">
   <form action="/<%= @title.downcase %>/<%= @object.id %>/edit">
     <% @object.instance_variables.each do |attribute| %>
-      <% snip = attribute.to_s.delete("@") %>
-      <p><%= snip.humanize %>: <%= @object.send(snip) %></p>
-      <input type="hidden" name="<%= snip %>" value="<%= @object.send(snip) %>">
+      <% if attribute.to_s != "@password" %>
+        <% snip = attribute.to_s.delete("@") %>
+        <p><%= snip.humanize %>: <%= @object.send(snip) %></p>
+        <input type="hidden" name="<%= snip %>" value="<%= @object.send(snip) %>">
+      <% end %>
     <% end #object.each %>
     <input type="submit" value="Edit/Delete">
   </form>
