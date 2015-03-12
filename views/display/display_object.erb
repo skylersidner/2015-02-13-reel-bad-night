@@ -6,9 +6,9 @@
       <% if attribute.to_s != "@password" %>
         <% snip = attribute.to_s.delete("@") %>
         <p><%= snip.humanize %>: <%= @object.send(snip) %></p>
-        <input type="hidden" name="<%= snip %>" value="<%= @object.send(snip) %>">
       <% end %>
     <% end #object.each %>
+    <input type="hidden" value="<%= @object.id %>">
     <input type="submit" value="Edit/Delete">
   </form>
 </div>

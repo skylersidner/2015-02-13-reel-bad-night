@@ -1,13 +1,14 @@
 ["/patrons", "/patrons/*"].each do |path|
   before path do
     @title = "Patrons"
-    @table = ["id", "first_name", "last_name"]
+    @table = ["id", "first_name", "last_name", "password"]
   end
 end
 
 
 get "/patrons" do
   @results = Patron.all
+  binding.pry
   erb :"/display/display_results"
 end
 

@@ -10,6 +10,7 @@
             <p><%= "#{x.humanize}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>
           <% end #if %>
         <% end #each %>
+      <input type="hidden" value="<%= @object.id %>">
       <input type="submit" value="Update">
     </form>
     <form action="/<%= @title.downcase %>/<%= @object.id %>/confirm">

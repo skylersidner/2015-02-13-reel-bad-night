@@ -13,8 +13,8 @@
           <% if attribute.to_s != "@password" %>
             <% snip = attribute.to_s.delete("@") %>
             <p><%= snip.humanize %>: <%= object.send(snip) %></p>
-            <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
           <% end %>
+          <input type="hidden" value="<%= object.id %>">
         <% end #object.each %>
         <input type="submit" value="See this one">
       </form>
