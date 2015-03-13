@@ -4,9 +4,12 @@ end
 
 post "/validate" do
   @user = Patron.get_user(params[:username])
-  if @user.password != params[:password] || @user == nil
-    @invalid = true
-    redirect :"/validate"
+  if @user == nil || @user.password != params[:password]
+    redirect :"/failed"
   end
   erb :"/login/validated"
+end
+
+get "/failed" do
+  erb :"/login/failed"
 end

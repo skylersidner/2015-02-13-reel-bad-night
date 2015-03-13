@@ -32,10 +32,14 @@ class Patron
     @id = DATABASE.last_insert_row_id
   end
   
-  def get_user(username)
-    results = DATABASE.execute("SELECT * WHERE username = '#{username}')")
-    object = self.new(results[0])
-    object
+  def self.get_user(username)
+    results = DATABASE.execute("SELECT * FROM patrons WHERE username = '#{username}'")
+    if results.count == 0
+      return nil
+    else
+      object = self.new(results[0])
+      object
+    end
   end
   
 end #class
