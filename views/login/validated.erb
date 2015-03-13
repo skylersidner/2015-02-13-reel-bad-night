@@ -1,0 +1,9 @@
+<h2>Logged In!</h2>
+
+<div class="display">
+  <form action="/patron/<%= @user.id %>/show">
+    <%= @user.username %>
+    <input type="hidden" value="<%= @user.id %>">
+    <input type="submit" value="Go to my Patron Info">
+  </form>
+</div>

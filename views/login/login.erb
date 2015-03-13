@@ -1,10 +1,15 @@
 <h2>Login</h2>
 
+<div class="block1">
+  <% if @invalid == true %>
+    <p>That is not a valid username/password!</p>
+  <% end %>
+</div>
 
-  <div class="display">
-    <form action="/validate">
-      <p>Username: <input type="text" name="username"></p>
-      <p>Password: <input type="text" name="password"></p>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+<div class="display">
+  <form action="/validate">
+    <p>Username: <input type="text" name="username"></p>
+    <p>Password: <input type="text" name="password"></p>
+    <input type="submit" value="Submit">
+  </form>
+</div>

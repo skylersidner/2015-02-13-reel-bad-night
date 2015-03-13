@@ -1,7 +1,7 @@
 ["/patrons", "/patrons/*"].each do |path|
   before path do
     @title = "Patrons"
-    @table = ["id", "first_name", "last_name", "password"]
+    @table = ["id", "first_name", "last_name", "username", "password"]
   end
 end
 
