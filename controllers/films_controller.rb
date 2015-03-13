@@ -23,11 +23,11 @@ end
 
 get "/films/save" do
   if params[:rt] == "yes"
-    redirect :"/films/new/rt"
+    redirect "/films/new/rt"
   end
   @new = Film.new(params)
   @new.insert
-  redirect :"/films/#{@new.id}/show"
+  redirect "/films/#{@new.id}/show"
 end
 
 get "/films/new/rt" do
@@ -65,7 +65,7 @@ end
 get "/films/:id/update" do
   @object = Film.new(params)
   @object.save
-  redirect :"/films/#{@object.id}/show"
+  redirect "/films/#{@object.id}/show"
 end
 
 get "/films/:id/confirm" do
@@ -76,5 +76,5 @@ end
 get "/films/:id/delete" do
   @object = Film.find_specific(params[:id])
   @object.delete
-  redirect :"/films"  
+  redirect "/films"  
 end
