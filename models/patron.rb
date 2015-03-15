@@ -1,21 +1,21 @@
 
 
-class Patron
+class Patron < ActiveRecord::Base
   
-  attr_reader :id
-  attr_accessor :first_name, :last_name, :username, :password
-  
-  extend Class_Methods
-  include Instance_Methods
-  
-  def initialize(options)
-    @id = options["id"]
-    @first_name = options["first_name"]
-    @last_name = options["last_name"]
-    @username = options["username"]
-    @password = options["password"]
-    
-  end
+  # attr_reader :id
+  # attr_accessor :first_name, :last_name, :username, :password
+  #
+  # extend Class_Methods
+  # include Instance_Methods
+  #
+  # def initialize(options)
+  #   @id = options["id"]
+  #   @first_name = options["first_name"]
+  #   @last_name = options["last_name"]
+  #   @username = options["username"]
+  #   @password = options["password"]
+  #
+  # end
   
   #---------------------------------------------------------
   # Public: #insert

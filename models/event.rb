@@ -1,21 +1,21 @@
 
 
-class Event
+class Event < ActiveRecord::Base
   
-  attr_reader :id, :start, :film_title
-  attr_accessor :date, :doors_open, :start_time, :host_msg, :current_event,
-                :film_id
-  
-  extend Class_Methods
-  include Instance_Methods
-  
-  def initialize(options)
-    @id = options["id"]
-    @start_time = options["start_time"]
-    @host_msg = options["host_msg"]
-    @current_event = options["current_event"]
-    @film_id = options["film_id"]
-  end
+  # attr_reader :id, :start, :film_title
+  # attr_accessor :date, :doors_open, :start_time, :host_msg, :current_event,
+  #               :film_id
+  #
+  # extend Class_Methods
+  # include Instance_Methods
+  #
+  # def initialize(options)
+  #   @id = options["id"]
+  #   @start_time = options["start_time"]
+  #   @host_msg = options["host_msg"]
+  #   @current_event = options["current_event"]
+  #   @film_id = options["film_id"]
+  # end
   
   #---------------------------------------------------------
   # Public: #insert

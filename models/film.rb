@@ -1,22 +1,22 @@
 
 
-class Film
+class Film < ActiveRecord::Base
   
-  attr_reader :id
-  attr_accessor :title, :year, :length, :synopsis, :trailer, :rt_rating
-  
-  extend Class_Methods
-  include Instance_Methods
-  
-  def initialize(options)
-    @id = options["id"]
-    @title = options["title"]
-    @length = options["length"]
-    @year = options["year"]
-    @synopsis = options["synopsis"]
-    @trailer = options["trailer"]
-    @rt_rating = options["rt_rating"]
-  end
+  # attr_reader :id
+  # attr_accessor :title, :year, :length, :synopsis, :trailer, :rt_rating
+  #
+  # extend Class_Methods
+  # include Instance_Methods
+  #
+  # def initialize(options)
+  #   @id = options["id"]
+  #   @title = options["title"]
+  #   @length = options["length"]
+  #   @year = options["year"]
+  #   @synopsis = options["synopsis"]
+  #   @trailer = options["trailer"]
+  #   @rt_rating = options["rt_rating"]
+  # end
   
   #---------------------------------------------------------
   # Public: #insert

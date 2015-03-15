@@ -22,7 +22,7 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS events
 DATABASE.execute("CREATE TABLE IF NOT EXISTS drinks
                  (id INTEGER PRIMARY KEY,
                  name TEXT NOT NULL,
-                 type TEXT NOT NULL,
+                 category TEXT NOT NULL,
                  description TEXT,
                  event_id INTEGER,
                  FOREIGN KEY (event_id) REFERENCES events(id))")
@@ -42,3 +42,4 @@ DATABASE.execute("CREATE TABLE IF NOT EXISTS events_patrons
                  FOREIGN KEY (patron_id) REFERENCES patrons(id))")
 
 DATABASE.results_as_hash = true
+

@@ -68,7 +68,7 @@ DATABASE.execute("INSERT INTO events (start_time,
                   current_event, film_id, host_msg) VALUES
                   ('2014-12-05-20-00', 2, 5, ?)", "#{msg4}")
 
-DATABASE.execute("INSERT INTO drinks (name, type, description, event_id) VALUES 
+DATABASE.execute("INSERT INTO drinks (name, category, description, event_id) VALUES 
                   ('Egg Nog', 'cocktail', 'Sweetened dairy-based drink, 
                   with rum', 4),
                   ('Ruby Red', 'cocktail', 'Cranberry juice, peach 
