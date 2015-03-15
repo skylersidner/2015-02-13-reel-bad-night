@@ -11,4 +11,9 @@
     <input type="hidden" value="<%= @object.id %>">
     <input type="submit" value="Edit/Delete">
   </form>
+  <form action="/logout">
+    <% if @object.is_a?(Patron) && @object.id == @user.id %>
+      <input type="submit" value="Logout">
+    <% end %>
+  </form>
 </div>

@@ -7,7 +7,8 @@ DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password
                   ('John', 'Doe', 'JohnD', '00000'),
                   ('Jane', 'Doe', 'JaneD', '00000'),
                   ('John Jacob Jingle Heimer', 'Schmidt', 'JJHS', '00000'),
-                  ('Abraham', 'Lincoln', 'HonestAbe', '00000')")
+                  ('Abraham', 'Lincoln', 'HonestAbe', '00000'),
+                  ('Some', 'Body', 'Adimin', '12345')")
                             
 DATABASE.execute("INSERT INTO films (title, year, length, synopsis, 
                   trailer, rt_rating) VALUES

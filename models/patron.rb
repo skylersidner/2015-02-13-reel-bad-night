@@ -28,7 +28,7 @@ class Patron
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
   def insert
-    DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES ('#{@first_name}', '#{@last_name}', '#{@username} '#{@password})")
+    DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES ('#{@first_name}', '#{@last_name}', '#{@username}', '#{@password}')")
     @id = DATABASE.last_insert_row_id
   end
   
