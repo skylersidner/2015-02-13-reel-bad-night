@@ -1,20 +1,20 @@
 
 
-class Drink
+class Drink < ActiveRecord::Base
   
-  attr_reader :id
-  attr_accessor :name, :type, :description, :event_id
+  # attr_reader :id
+  # attr_accessor :name, :type, :description, :event_id
   
-  extend Class_Methods
-  include Instance_Methods
+  # extend Class_Methods
+  # include Instance_Methods
   
-  def initialize(options)
-    @id = options["id"]
-    @name = options["name"]
-    @type = options["type"] 
-    @description = options["description"]
-    @event_id = options["event_id"]
-  end
+  # def initialize(options)
+  #   @id = options["id"]
+  #   @name = options["name"]
+  #   @type = options["type"]
+  #   @description = options["description"]
+  #   @event_id = options["event_id"]
+  # end
   
   #---------------------------------------------------------
   # Public: #insert

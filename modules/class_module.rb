@@ -8,6 +8,7 @@
 # #all
 module Class_Methods
   
+  #---------------------------------------------------------
   # Public: #all
   # Enables a class to return all records from its corresponding table.
   #
@@ -17,11 +18,12 @@ module Class_Methods
   # Returns: An array of objects.
   #
   # State Changes: None
-  def all
-    results = DATABASE.execute("SELECT * FROM '#{self.to_s.tableize}'")
-    
-    convert_to_objects(results)
-  end
+  #---------------------------------------------------------
+  # def all
+  #   results = DATABASE.execute("SELECT * FROM '#{self.to_s.tableize}'")
+  #
+  #   convert_to_objects(results)
+  # end
   
   #---------------------------------------------------------
   # Public: .search

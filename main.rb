@@ -19,11 +19,10 @@ require 'sqlite3'
 
 Bundler.require(:default)
 
-DATABASE = SQLite3::Database.new("database/reel_bad.db")
+set :database, {adapter: "sqlite3", database: "database/reel_bad.db"}
 
 require_relative 'database/db_setup.rb'
 
-set :database, {adapter: "sqlite3", database: "database/reel_bad.db"}
 
 require_relative 'modules/instance_module'
 require_relative 'modules/class_module'
@@ -44,4 +43,4 @@ require_relative "controllers/drinks_controller.rb"
 require_relative "controllers/patrons_controller.rb"
 require_relative "controllers/login_controller.rb"
 
-
+binding.pry
