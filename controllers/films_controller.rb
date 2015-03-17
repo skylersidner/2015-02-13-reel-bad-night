@@ -26,8 +26,6 @@ get "/films/save" do
     redirect "/films/new/rt"
   end
   @new = Film.create(params)
-  # @new = Film.new(params)
-  # @new.insert
   redirect "/films/#{@new.id}/show"
 end
 

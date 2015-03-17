@@ -8,9 +8,9 @@ end
 
 get "/events" do
   @results = Event.all
-  @results.each do |x|
-    x.prepare_for_display
-  end
+  # @results.each do |x|
+  #   x.prepare_for_display
+  # end
   erb :"/display/display_events"
 end
 
@@ -21,9 +21,8 @@ get "/events/new" do
 end
 
 get "/events/save" do
-  @new = Event.new(params)
-  @new.insert
-  redirect :"/events/#{@new.id}/show"
+  @new = Event.create(params)
+  redirect "/events/#{@new.id}/show"
 end
 
 get "/events/search" do
@@ -31,35 +30,37 @@ get "/events/search" do
 end
 
 get "/events/search_results" do
-  get_search_results #helper
-  @admin = true
-  erb :"/display/display_results"
+  @results = Event.where params[:search_field]=> params[:value]
+  # @results.each do |x|
+  #   x.prepare_for_display
+  # end
+  erb :"/display/display_events"
 end
 
 get "/events/:id/show" do
-  @object = Event.find_specific(params[:id])
-  @object.prepare_for_display
+  @object = Event.find_by id: params[:id]
+  # @object.prepare_for_display
   erb :"/display/display_event"
 end
 
 get "/events/:id/edit" do
-  @object = Event.find_specific(params[:id])
-  erb :"/manipulate/edit"  
+  @object = Event.find_by id: params[:id]
+  erb :"/manipulate/edit_event"  
 end
 
 get "/events/:id/update" do
-  @object = Event.new(params)
-  @object.save
-  redirect :"/events/#{@object.id}/show"
+  @object = Event.find_by id: params[:id]
+  @object.update(start_time: [:start_time], host_msg: params[:host_msg], current_event: params[:current_event], film_id: params[:film_id])
+  redirect "/events/#{@object.id}/show"
 end
 
 get "/events/:id/confirm" do
-  @object = Event.find_specific(params[:id])
-  erb :"/manipulate/confirm"
+  @object = Event.find_by id: params[:id]
+  erb :"/manipulate/confirm_event"
 end
 
 get "/events/:id/delete" do
-  @object = Event.find_specific(params[:id])
-  @object.delete
-  redirect :"/events"  
+  @object = Event.find_by id: params[:id]
+  @object.destroy
+  redirect "/events"  
 end

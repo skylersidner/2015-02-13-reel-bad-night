@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   #
   # def initialize(options)
   #   @id = options["id"]
-  #   @start_time = options["start_time"]
+  #   @start_time = options["start_time"] Format: YYYY-MM-DD-HH-MM (military)
   #   @host_msg = options["host_msg"]
   #   @current_event = options["current_event"]
   #   @film_id = options["film_id"]
@@ -33,12 +33,13 @@ class Event < ActiveRecord::Base
   end
   
   # DOCUMENT ME!!!!!
-  
+  # this method will not work with ActiveRecord; need to figure out a way to create this information for the event that will work.
   def prepare_for_display
-    dt_array = convert_to_datetime_object(self)
-    @start = dt_array.to_formatted_s(:long_ordinal)
-    film = Film.find_specific(self.film_id)
-    @film_title = film.title
+    dt_array = convert_to_datetime_object(self) #date_time_module
+    self.start_time = dt_array.to_formatted_s(:long_ordinal)
+    # film = Film.find_specific(self.film_id)
+    film = Film.find_by "id" => self.film_id
+    self.film_id = film.title
     return self
   end
   

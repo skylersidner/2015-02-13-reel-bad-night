@@ -4,7 +4,7 @@ DATABASE = SQLite3::Database.new("reel_bad.db")
 
 DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES
                   ('Some', 'Body', 'Admin', '12345'),
-                  ('No', 'Body', 'Not Logged In', '11111')
+                  ('No', 'Body', 'Not Logged In', '11111'),
                   ('Skyler', 'Sidner', 'malevolentdragon', '00000'),
                   ('John', 'Doe', 'JohnD', '00000'),
                   ('Jane', 'Doe', 'JaneD', '00000'),

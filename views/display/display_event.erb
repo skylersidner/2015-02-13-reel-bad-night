@@ -3,9 +3,9 @@
 <div class="display">
   <form action="/events/<%= @object.id %>/edit">
     <p>ID#: <%= @object.id %></p>
-    <p>When: <%= @object.start %></p>
-    <p>Film: <%= @object.film_title %></p>
-    <p><%= @object.host_msg %></p>
+    <p>When: <%= @object.start_time %></p>
+    <p>Film: <%= @object.film_id %></p>
+    <p>Host Message: <%= @object.host_msg %></p>
     <input type="hidden" name="id" value="<%= @object.id %>">
     <input type="submit" value="Edit/Delete">
   </form>

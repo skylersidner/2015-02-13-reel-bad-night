@@ -1,0 +1,17 @@
+<h2>Events</h2>
+
+<div class="display">
+  <form action="/events/<%= @object.id %>/update">
+    <p>ID: <%= @object.id %></p>
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <p>Start Time: <input type="text" name="start_time" value="<%= @object.start_time %>"></p>
+    <p>Host Message: <input type="text" name="host_msg" value="<%= @object.host_msg %>"></p>
+    <p>Current Event: <input type="text" name="current_event" value="<%= @object.current_event %>"></p>
+    <p>Film ID: <input type="text" name="film_id" value="<%= @object.film_id %>"></p>
+    <input type="submit" value="Update">
+  </form>
+  <form action="/events/<%= @object.id %>/confirm">
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <input type="submit" value="Delete">
+  </form>
+</div>
