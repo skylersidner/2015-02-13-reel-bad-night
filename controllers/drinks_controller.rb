@@ -47,8 +47,11 @@ get "/drinks/:id/edit" do
 end
 
 get "/drinks/:id/update" do
-  @object = Drink.new(name: params[:name], category: params[:category], description: params[:description], event_id: params[:event_id])
-  @object.save
+  # @object = Drink.new(name: params[:name], category: params[:category], description: params[:description], event_id: params[:event_id])
+  # @object.save
+  
+  @object = Drink.find_by id: params[:id]
+  @object.update(name: params[:name], category: params[:category], description: params[:description], event_id: params[:event_id])
   
   # @object = Drink.new(params)
   # @object.save
