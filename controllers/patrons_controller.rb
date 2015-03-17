@@ -19,7 +19,7 @@ end
 
 get "/patrons/save" do
   @new = Patron.create(params)
-  redirect :"/patrons/#{@new.id}/show"
+  redirect "/patrons/#{@new.id}/show"
 end
 
 get "/patrons/search" do
@@ -44,7 +44,7 @@ end
 get "/patrons/:id/update" do
   @object = Patron.find_by id: params[:id]
   @object.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
-  redirect :"/patrons/#{@object.id}/show"
+  redirect "/patrons/#{@object.id}/show"
 end
 
 get "/patrons/:id/confirm" do
@@ -55,5 +55,5 @@ end
 get "/patrons/:id/delete" do
   @object = Patron.find_by id: params[:id]
   @object.destroy
-  redirect :"/patrons"  
+  redirect "/patrons"  
 end

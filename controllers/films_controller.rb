@@ -8,7 +8,7 @@ end
 
 get "/films" do
   @results = Film.all
-  erb :"/display/display_results"
+  erb :"/display/display_films"
 end
 
 get "/films/new" do
@@ -25,8 +25,9 @@ get "/films/save" do
   if params[:rt] == "yes"
     redirect "/films/new/rt"
   end
-  @new = Film.new(params)
-  @new.insert
+  @new = Film.create(params)
+  # @new = Film.new(params)
+  # @new.insert
   redirect "/films/#{@new.id}/show"
 end
 
@@ -47,34 +48,33 @@ get "/films/search" do
 end
 
 get "/films/search_results" do
-  get_search_results #helper
-  @admin = true
-  erb :"/display/display_results"
+  @results = Film.where params[:search_field]=> params[:value]
+  erb :"/display/display_films"
 end
 
 get "/films/:id/show" do
-  @object = Film.find_specific(params[:id])
-  erb :"/display/display_object"
+  @object = Film.find_by id: params[:id]
+  erb :"/display/display_film"
 end
 
 get "/films/:id/edit" do
-  @object = Film.find_specific(params[:id])
-  erb :"/manipulate/edit"  
+  @object = Film.find_by id: params[:id]
+  erb :"/manipulate/edit_film"  
 end
 
 get "/films/:id/update" do
-  @object = Film.new(params)
-  @object.save
+  @object = Film.find_by id: params[:id]
+  @object.update(title: params[:title], year: params[:year], length: params[:length], synopsis: params[:synopsis], trailer: params[:trailer], rt_rating: params[:rt_rating])
   redirect "/films/#{@object.id}/show"
 end
 
 get "/films/:id/confirm" do
-  @object = Film.find_specific(params[:id])
-  erb :"/manipulate/confirm"
+  @object = Film.find_by id: params[:id]
+  erb :"/manipulate/confirm_film"
 end
 
 get "/films/:id/delete" do
-  @object = Film.find_specific(params[:id])
-  @object.delete
+  @object = Film.find_by id: params[:id]
+  @object.destroy
   redirect "/films"  
 end

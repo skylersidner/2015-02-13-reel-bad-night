@@ -21,7 +21,7 @@ get "/drinks/save" do
   @new = Drink.create(params)
   # @new = Drink.new(params)
   # @new.insert
-  redirect :"/drinks/#{@new.id}/show"
+  redirect "/drinks/#{@new.id}/show"
 end
 
 get "/drinks/search" do
@@ -55,7 +55,7 @@ get "/drinks/:id/update" do
   
   # @object = Drink.new(params)
   # @object.save
-  redirect :"/drinks/#{@object.id}/show"
+  redirect "/drinks/#{@object.id}/show"
 end
 
 get "/drinks/:id/confirm" do
@@ -69,5 +69,5 @@ get "/drinks/:id/delete" do
   @object.destroy
   # @object = Drink.find_specific(params[:id])
   # @object.delete
-  redirect :"/drinks"  
+  redirect "/drinks"  
 end
