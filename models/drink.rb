@@ -6,7 +6,7 @@ class Drink < ActiveRecord::Base
   # attr_accessor :name, :category, :description, :event_id
   
   extend Class_Methods
-  include Instance_Methods
+  # include Instance_Methods
   
   # def initialize(options)
   #   @id = options["id"]

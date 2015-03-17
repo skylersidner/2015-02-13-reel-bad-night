@@ -1,0 +1,17 @@
+<h2>Drinks</h2>
+
+<div class="display">
+  <form action="/drinks/<%= @object.id %>/update">
+    <p>ID: <%= @object.id %></p>
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <p>Name: <input type="text" name="name" value="<%= @object.name %>"></p>
+    <p>Category: <input type="text" name="category" value="<%= @object.category %>"></p>
+    <p>Description: <input type="text" name="description" value="<%= @object.description %>"></p>
+    <p>Event: <input type="text" name="event_id" value="<%= @object.event_id %>"></p>
+    <input type="submit" value="Update">
+  </form>
+  <form action="/<%= @title.downcase %>/<%= @object.id %>/confirm">
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <input type="submit" value="Delete">
+  </form>
+</div>

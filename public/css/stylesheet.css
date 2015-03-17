@@ -68,8 +68,15 @@ body {
 
 .login_button p {
   margin: 0;
-  color: #AAAAAA;
   text-transform: uppercase;
+}
+
+.login_button a {
+  color: #AAAAAA;
+}
+
+.login_button a:hover {
+  color: #FFFFFF;
 }
 
 .banner {

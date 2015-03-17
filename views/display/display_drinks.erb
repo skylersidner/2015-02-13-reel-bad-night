@@ -1,0 +1,26 @@
+<h2>Drinks</h2>
+
+<div class="block1">
+  <p><a href="/drinks/search">Search for a specific drink</a></p>
+  <p><a href="/drinks/new">Make a new drink</a></p>
+</div>
+
+<% if @results.count > 0 %>
+  <% @results.each do |object| %>
+    <div class="display">
+      <form action="/drinks/<%= object.id %>/show">
+        <p>ID: <%= object.id %></p>
+        <p>Name: <%= object.name %></p>
+        <p>Category: <%= object.category %></p>
+        <p>Description: <%= object.description %></p>
+        <p>Event: <%= object.event_id %></p>
+        <input type="hidden" value="<%= object.id %>">
+        <input type="submit" value="See this one">
+      </form>
+    </div>
+  <% end %>
+<% else %>
+  <div class="block1">
+    <p>No results matched your search!<p>
+  </div>
+<% end %>

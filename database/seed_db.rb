@@ -3,12 +3,13 @@ require 'sqlite3'
 DATABASE = SQLite3::Database.new("reel_bad.db")
 
 DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES
+                  ('Some', 'Body', 'Admin', '12345'),
+                  ('No', 'Body', 'Not Logged In', '11111')
                   ('Skyler', 'Sidner', 'malevolentdragon', '00000'),
                   ('John', 'Doe', 'JohnD', '00000'),
                   ('Jane', 'Doe', 'JaneD', '00000'),
                   ('John Jacob Jingle Heimer', 'Schmidt', 'JJHS', '00000'),
-                  ('Abraham', 'Lincoln', 'HonestAbe', '00000'),
-                  ('Some', 'Body', 'Adimin', '12345')")
+                  ('Abraham', 'Lincoln', 'HonestAbe', '00000')")
                             
 DATABASE.execute("INSERT INTO films (title, year, length, synopsis, 
                   trailer, rt_rating) VALUES

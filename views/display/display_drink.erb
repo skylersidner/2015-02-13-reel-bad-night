@@ -1,0 +1,13 @@
+<h2>Drink #<%= @object.id %></h2>
+
+<div class="display">
+  <form action="/drinks/<%= @object.id %>/edit">
+    <p>ID: <%= @object.id %></p>
+    <p>Name: <%= @object.name %></p>
+    <p>Category: <%= @object.category %></p>
+    <p>Description: <%= @object.description %></p>
+    <p>Event: <%= @object.event_id %></p>
+    <input type="hidden" value="<%= @object.id %>">
+    <input type="submit" value="Edit/Delete">
+  </form>
+</div>

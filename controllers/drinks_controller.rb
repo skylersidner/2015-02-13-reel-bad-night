@@ -1,14 +1,14 @@
 ["/drinks", "/drinks/*"].each do |path|
   before path do
     @title = "Drinks"
-    @table = ["id", "name", "type", "description", "event_id"]
+    @table = ["id", "name", "category", "description", "event_id"]
   end
 end
 
 
 get "/drinks" do
   @results = Drink.all
-  erb :"/display/display_results"
+  erb :"/display/display_drinks"
 end
 
 get "/drinks/new" do
@@ -18,8 +18,9 @@ get "/drinks/new" do
 end
 
 get "/drinks/save" do
-  @new = Drink.new(params)
-  @new.insert
+  @new = Drink.create(params)
+  # @new = Drink.new(params)
+  # @new.insert
   redirect :"/drinks/#{@new.id}/show"
 end
 
@@ -28,34 +29,42 @@ get "/drinks/search" do
 end
 
 get "/drinks/search_results" do
-  get_search_results #helper
-  @admin = true
-  erb :"/display/display_results"
+  @results = Drink.find_by params[:search_field]=> params[:value]
+  # get_search_results #helper
+  erb :"/display/display_drinks"
 end
 
 get "/drinks/:id/show" do
-  @object = Drink.find_specific(params[:id])
-  erb :"/display/display_object"
+  @object = Drink.find_by id: params[:id]
+  # @object = Drink.find_specific(params[:id])
+  erb :"/display/display_drink"
 end
 
 get "/drinks/:id/edit" do
-  @object = Drink.find_specific(params[:id])
-  erb :"/manipulate/edit"  
+  @object = Drink.find_by id: params[:id]
+  # @object = Drink.find_specific(params[:id])
+  erb :"/manipulate/edit_drink"  
 end
 
 get "/drinks/:id/update" do
-  @object = Drink.new(params)
+  @object = Drink.new(name: params[:name], category: params[:category], description: params[:description], event_id: params[:event_id])
   @object.save
+  
+  # @object = Drink.new(params)
+  # @object.save
   redirect :"/drinks/#{@object.id}/show"
 end
 
 get "/drinks/:id/confirm" do
-  @object = Drink.find_specific(params[:id])
-  erb :"/manipulate/confirm"
+  @object = Drink.find_by id: params[:id]
+  # @object = Drink.find_specific(params[:id])
+  erb :"/manipulate/confirm_drink"
 end
 
 get "/drinks/:id/delete" do
-  @object = Drink.find_specific(params[:id])
-  @object.delete
+  @object = Drink.find_by id: params[:id]
+  @object.destroy
+  # @object = Drink.find_specific(params[:id])
+  # @object.delete
   redirect :"/drinks"  
 end

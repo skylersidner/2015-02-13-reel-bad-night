@@ -5,7 +5,7 @@
     <form action="/<%= @title.downcase %>/search_results">
       <select name="search_field">
         <% @table.each do |x| %>
-        <option value="<%= x %>"><%= x %></option>
+          <option value="<%= x %>"><%= x %></option>
         <% end %>
       </select>
       <input type="text" name="value">
