@@ -27,7 +27,7 @@ get "/patrons/search" do
 end
 
 get "/patrons/search_results" do
-  @results = Patron.find_by params[:search_field]=> params[:value]
+  @results = Patron.where params[:search_field]=> params[:value]
   erb :"/display/display_patrons"
 end
 
@@ -53,7 +53,7 @@ get "/patrons/:id/confirm" do
 end
 
 get "/patrons/:id/delete" do
-  @object = Drink.find_by id: params[:id]
+  @object = Patron.find_by id: params[:id]
   @object.destroy
   redirect :"/patrons"  
 end

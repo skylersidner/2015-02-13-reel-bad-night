@@ -29,7 +29,7 @@ get "/drinks/search" do
 end
 
 get "/drinks/search_results" do
-  @results = Drink.find_by params[:search_field]=> params[:value]
+  @results = Drink.where params[:search_field]=> params[:value]
   # get_search_results #helper
   erb :"/display/display_drinks"
 end
