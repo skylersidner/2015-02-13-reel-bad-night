@@ -8,7 +8,7 @@ end
 
 get "/patrons" do
   @results = Patron.all
-  erb :"/display/display_results"
+  erb :"/display/display_patrons"
 end
 
 get "/patrons/new" do
@@ -18,8 +18,7 @@ get "/patrons/new" do
 end
 
 get "/patrons/save" do
-  @new = Patron.new(params)
-  @new.insert
+  @new = Patron.create(params)
   redirect :"/patrons/#{@new.id}/show"
 end
 
@@ -28,33 +27,33 @@ get "/patrons/search" do
 end
 
 get "/patrons/search_results" do
-  get_search_results #helper
-  erb :"/display/display_results"
+  @results = Patron.find_by params[:search_field]=> params[:value]
+  erb :"/display/display_patrons"
 end
 
 get "/patrons/:id/show" do
-  @object = Patron.find_specific(params[:id])
-  erb :"/display/display_object"
+  @object = Patron.find_by id: params[:id]
+  erb :"/display/display_patron"
 end
 
 get "/patrons/:id/edit" do
-  @object = Patron.find_specific(params[:id])
-  erb :"/manipulate/edit"  
+  @object = Patron.find_by id: params[:id]
+  erb :"/manipulate/edit_patron"  
 end
 
 get "/patrons/:id/update" do
-  @object = Patron.new(params)
-  @object.save
+  @object = Patron.find_by id: params[:id]
+  @object.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
   redirect :"/patrons/#{@object.id}/show"
 end
 
 get "/patrons/:id/confirm" do
-  @object = Patron.find_specific(params[:id])
-  erb :"/manipulate/confirm"
+  @object = Patron.find_by id: params[:id]
+  erb :"/manipulate/confirm_patron"
 end
 
 get "/patrons/:id/delete" do
-  @object = Patron.find_specific(params[:id])
-  @object.delete
+  @object = Drink.find_by id: params[:id]
+  @object.destroy
   redirect :"/patrons"  
 end
