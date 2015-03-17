@@ -56,16 +56,16 @@ module RouteHelpers
   # Returns: An array of objects based on search results.
   #
   # State Changes: @results is populated with objects.
-  def get_search_results
-    # Use Active Support to capture the right class.
-    object_class = (@title.classify).constantize
-    if params[:all] == "yes" #check if they want all of that type
-      @results = object_class.all
-    else
-      @results = object_class.search(params[:search_field], params[:value])
-    end #if
-    @results
-  end #method
+  # def get_search_results
+  #   # Use Active Support to capture the right class.
+  #   object_class = (@title.classify).constantize
+  #   if params[:all] == "yes" #check if they want all of that type
+  #     @results = object_class.all
+  #   else
+  #     @results = object_class.search(params[:search_field], params[:value])
+  #   end #if
+  #   @results
+  # end #method
 
   
 end #module

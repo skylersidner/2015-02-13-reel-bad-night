@@ -1,5 +1,5 @@
 <a name="top"></a>
-<h2>New...</h2>
+<h2>New film...</h2>
 
 
 <div class="block1">
@@ -21,17 +21,22 @@
   <% @results.each do |object| %>
     <div class="display">
       <form action="/films/new">
-        <% object.instance_variables.each do |attribute| %>
-          <% snip = attribute.to_s.delete("@") %>
-          <% if snip != "id" && snip != "trailer" %>
-            <p><%= "#{snip.humanize}" %>: <%= object.send(snip) %></p>
-            <input type="hidden" name="<%= snip %>" value="<%= object.send(snip) %>">
-          <% end %>
-        <% end %>
+        <div class="rotten_results">
+          <p>Title: <%= object.title %></p>
+          <input type="hidden" name="title" value="<%= object.title %>">
+          <p>Year: <%= object.year %></p>
+          <input type="hidden" name="year" value="<%= object.year %>">
+          <p>Length: <%= object.length %> min</p>
+          <input type="hidden" name="length" value="<%= object.length %>">
+          <p>Plot Synopsis: <%= object.synopsis %></p>
+          <input type="hidden" name="synopsis" value="<%= object.synopsis %>">
+          <p>Rotten/Fresh Rating: <%= object.rt_rating %></p>
+          <input type="hidden" name="rt_rating" value="<%= object.rt_rating %>">
+          <input type="submit" value="This one!">
+        </div>
         <div class="movie_thumb">
           <img src="<%= @thumbs[@results.find_index(object)] %>" alt="poster thumbnail" height="100" width="67">
         </div>
-        <input type="submit" value="This one!">
       </form>
     </div>
   <% end %>

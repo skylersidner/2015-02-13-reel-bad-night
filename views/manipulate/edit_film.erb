@@ -8,8 +8,8 @@
     <p>Year: <input type="text" name="year" value="<%= @object.year %>"></p>
     <p>Length: <input type="text" name="length" value="<%= @object.length %>"></p>
     <p>Plot Synopsis: <input type="text" name="synopsis" value="<%= @object.synopsis %>"></p>
-    <p>Trailer: <input type="text" name="trailer" value="<%= @object.trailer %>">
-    <p>Rotten/Fresh Rating: <input type="text" name="rt_rating" value="<%= @object.rt_rating %>">
+    <p>Trailer: <input type="text" name="trailer" value="<%= @object.trailer %>"></p>
+    <p>Rotten/Fresh Rating: <input type="text" name="rt_rating" value="<%= @object.rt_rating %>"></p>
     <input type="submit" value="Update">
   </form>
   <form action="/films/<%= @object.id %>/confirm">

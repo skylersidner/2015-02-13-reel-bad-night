@@ -161,18 +161,22 @@ h2 {
 }
 
 .display {
+  display: relative;
   background-color: #AA6939;
   margin: 5px;
   padding: 2px;
+  clear: both;
 }
 
 .display p {
   color: #FFCEAA;
 }
 
+.rotten_results {
+  float: left;
+}
+
 .movie_thumb {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  float: right;
 }
 
