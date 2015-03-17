@@ -26,15 +26,14 @@ end
 end
 
 get "/login" do
-  @user = Patron.find_by id: session[:user]
-  if session[:user] == 1
-    redirect "/patrons/#{@user.id}/show"
+  if session[:user] >= 1 && session[:user] <= 7 && session[:user] != 2
+    redirect "/patrons/#{session[:user]}/show"
   end
   erb :"/login/login"
 end
 
 post "/validate" do
-  @user = Patron.get_user(params[:username])
+  @user = Patron.find_by "username" => params[:username]
   if @user == nil || @user.password != params[:password]
     redirect "/failed"
   end
