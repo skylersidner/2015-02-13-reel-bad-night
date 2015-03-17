@@ -1,0 +1,25 @@
+<h2>Patrons</h2>
+
+<div class="block1">
+  <p><a href="/patrons/search">Search for a specific patron</a></p>
+  <p><a href="/patrons/new">Make a new patron</a></p>
+</div>
+
+<% if @results.count > 0 %>
+  <% @results.each do |object| %>
+    <div class="display">
+      <form action="/patrons/<%= object.id %>/show">
+        <p>ID: <%= object.id %></p>
+        <p>First Name: <%= object.first_name %></p>
+        <p>Last Name: <%= object.last_name %></p>
+        <p>Username: <%= object.username %></p>
+        <input type="hidden" value="<%= object.id %>">
+        <input type="submit" value="See this one">
+      </form>
+    </div>
+  <% end %>
+<% else %>
+  <div class="block1">
+    <p>No results matched your search!<p>
+  </div>
+<% end %>

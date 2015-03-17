@@ -1,0 +1,12 @@
+<h2>Patron #<%= @object.id %></h2>
+
+<div class="display">
+  <form action="/patrons/<%= @object.id %>/edit">
+    <p>ID: <%= @object.id %></p>
+    <p>First Name: <%= @object.first_name %></p>
+    <p>Last Name: <%= @object.last_name %></p>
+    <p>Username: <%= @object.username %></p>
+    <input type="hidden" value="<%= @object.id %>">
+    <input type="submit" value="Edit/Delete">
+  </form>
+</div>

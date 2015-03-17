@@ -1,0 +1,17 @@
+<h2>Patrons</h2>
+
+<div class="display">
+  <form action="/patrons/<%= @object.id %>/update">
+    <p>ID: <%= @object.id %></p>
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <p>First Name: <input type="text" name="first_name" value="<%= @object.first_name %>"></p>
+    <p>Last Name: <input type="text" name="last_name" value="<%= @object.last_name %>"></p>
+    <p>Username: <input type="text" name="username" value="<%= @object.username %>"></p>
+    <p>Password: <input type="text" name="password" value="<%= @object.password %>"></p>
+    <input type="submit" value="Update">
+  </form>
+  <form action="/patrons/<%= @object.id %>/confirm">
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <input type="submit" value="Delete">
+  </form>
+</div>
