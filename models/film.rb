@@ -11,8 +11,8 @@ class Film < ActiveRecord::Base
   # def initialize(options)
   #   @id = options["id"]
   #   @title = options["title"]
-  #   @length = options["length"]
   #   @year = options["year"]
+  #   @length = options["length"]
   #   @synopsis = options["synopsis"]
   #   @trailer = options["trailer"]
   #   @rt_rating = options["rt_rating"]

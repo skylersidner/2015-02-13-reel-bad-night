@@ -1,0 +1,19 @@
+<h2>Films</h2>
+
+<div class="display">
+  <form action="/films/<%= @object.id %>/update">
+    <p>ID: <%= @object.id %></p>
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <p>Title: <input type="text" name="title" value="<%= @object.title %>"></p>
+    <p>Year: <input type="text" name="year" value="<%= @object.year %>"></p>
+    <p>Length: <input type="text" name="length" value="<%= @object.length %>"></p>
+    <p>Plot Synopsis: <input type="text" name="synopsis" value="<%= @object.synopsis %>"></p>
+    <p>Trailer: <input type="text" name="trailer" value="<%= @object.trailer %>">
+    <p>Rotten/Fresh Rating: <input type="text" name="rt_rating" value="<%= @object.rt_rating %>">
+    <input type="submit" value="Update">
+  </form>
+  <form action="/films/<%= @object.id %>/confirm">
+    <input type="hidden" name="id" value="<%= @object.id %>">
+    <input type="submit" value="Delete">
+  </form>
+</div>
