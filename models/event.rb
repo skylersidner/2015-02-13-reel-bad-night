@@ -3,6 +3,7 @@
 class Event < ActiveRecord::Base
 
   has_many :drinks
+  belongs_to :film
 
   has_many :events_patrons
   has_many :patrons, :through => :events_patrons

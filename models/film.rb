@@ -2,6 +2,8 @@
 
 class Film < ActiveRecord::Base
   
+  has_many :events
+  
   # attr_reader :id
   # attr_accessor :title, :year, :length, :synopsis, :trailer, :rt_rating
   #
@@ -32,10 +34,10 @@ class Film < ActiveRecord::Base
   #   DATABASE.execute("INSERT INTO films (title, length, year, synopsis, trailer, rt_rating) VALUES ('#{@title}', '#{@length}', '#{@year}', '#{@synopsis}', '#{@trailer}', '#{@rt_rating}')")
   #   @id = DATABASE.last_insert_row_id
   # end
-  
-  def insert
-    DATABASE.execute("INSERT INTO films (title, length, year, synopsis, trailer, rt_rating) VALUES ('#{@title}', '#{@length}', '#{@year}', ?, '#{@trailer}', '#{@rt_rating}')", "#{@synopsis}")
-    @id = DATABASE.last_insert_row_id
-  end
+  #
+  # def insert
+  #   DATABASE.execute("INSERT INTO films (title, length, year, synopsis, trailer, rt_rating) VALUES ('#{@title}', '#{@length}', '#{@year}', ?, '#{@trailer}', '#{@rt_rating}')", "#{@synopsis}")
+  #   @id = DATABASE.last_insert_row_id
+  # end
   
 end #class
