@@ -21,7 +21,7 @@ get "/films/new" do
   erb :"/manipulate/new"
 end
 
-get "/films/save" do
+post "/films/save" do
   if params[:rt] == "yes"
     redirect "/films/new/rt"
   end
@@ -60,7 +60,7 @@ get "/films/:id/edit" do
   erb :"/manipulate/edit_film"  
 end
 
-get "/films/:id/update" do
+post "/films/:id/update" do
   @object = Film.find_by id: params[:id]
   @object.update(title: params[:title], year: params[:year], length: params[:length], synopsis: params[:synopsis], trailer: params[:trailer], rt_rating: params[:rt_rating])
   redirect "/films/#{@object.id}/show"
@@ -71,7 +71,7 @@ get "/films/:id/confirm" do
   erb :"/manipulate/confirm_film"
 end
 
-get "/films/:id/delete" do
+post "/films/:id/delete" do
   @object = Film.find_by id: params[:id]
   @object.destroy
   redirect "/films"  

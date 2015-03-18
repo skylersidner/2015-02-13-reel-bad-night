@@ -1,7 +1,7 @@
 <h2>Delete Film #<%= @object.id %>?</h2>
 
 <div class="display">
-  <form action="/films/<%= @object.id %>/delete">
+  <form action="/films/<%= @object.id %>/delete" method="post">
     <p>ID: <%= @object.id %></p>
     <p>Title: <%= @object.title %></p>
     <p>Year: <%= @object.year %></p>

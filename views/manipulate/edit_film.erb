@@ -1,7 +1,7 @@
 <h2>Films</h2>
 
 <div class="display">
-  <form action="/films/<%= @object.id %>/update">
+  <form action="/films/<%= @object.id %>/update" method="post">
     <p>ID: <%= @object.id %></p>
     <input type="hidden" name="id" value="<%= @object.id %>">
     <p>Title: <input type="text" name="title" value="<%= @object.title %>"></p>
