@@ -1,7 +1,7 @@
 ["/events", "/events/*"].each do |path|
   before path do
     @title = "Events"
-    @table = ["id", "start_time", "current_event", "film_id", "host_msg"]
+    @table = ["id", "start_time", "film_id", "host_msg", "current_event"]
   end
 end
 
@@ -20,7 +20,7 @@ get "/events/new" do
   erb :"/manipulate/new"
 end
 
-get "/events/save" do
+post "/events/save" do
   @new = Event.create(params)
   redirect "/events/#{@new.id}/show"
 end
@@ -48,9 +48,9 @@ get "/events/:id/edit" do
   erb :"/manipulate/edit_event"  
 end
 
-get "/events/:id/update" do
+post "/events/:id/update" do
   @object = Event.find_by id: params[:id]
-  @object.update(start_time: [:start_time], host_msg: params[:host_msg], current_event: params[:current_event], film_id: params[:film_id])
+  @object.update(start_time: params[:start_time], film_id: params[:film_id], host_msg: params[:host_msg], current_event: params[:current_event])
   redirect "/events/#{@object.id}/show"
 end
 
@@ -59,7 +59,7 @@ get "/events/:id/confirm" do
   erb :"/manipulate/confirm_event"
 end
 
-get "/events/:id/delete" do
+post "/events/:id/delete" do
   @object = Event.find_by id: params[:id]
   @object.destroy
   redirect "/events"  

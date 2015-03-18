@@ -1,12 +1,12 @@
 <h2>Delete Event #<%= @object.id %>?</h2>
 
 <div class="display">
-  <form action="/events/<%= @object.id %>/delete">
+  <form action="/events/<%= @object.id %>/delete" method="post">
     <p>ID: <%= @object.id %></p>
     <p>Start Time: <%= @object.start_time %></p>
+    <p>Film ID: <%= @object.film_id %></p>
     <p>Host Message: <%= @object.host_msg %></p>
     <p>Current Event: <%= @object.current_event %></p>
-    <p>Film ID: <%= @object.film_id %></p>
     <input type="hidden" value="<%= @object.id %>">
     <input type="submit" value="Delete">
   </form>

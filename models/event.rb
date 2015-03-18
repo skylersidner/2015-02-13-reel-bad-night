@@ -2,9 +2,8 @@
 
 class Event < ActiveRecord::Base
   
-  # attr_reader :id, :start, :film_title
-  # attr_accessor :date, :doors_open, :start_time, :host_msg, :current_event,
-  #               :film_id
+  # attr_reader :id
+  # attr_accessor :start_time, :film_id, :host_msg, :current_event
   #
   # extend Class_Methods
   # include Instance_Methods
@@ -12,9 +11,9 @@ class Event < ActiveRecord::Base
   # def initialize(options)
   #   @id = options["id"]
   #   @start_time = options["start_time"] Format: YYYY-MM-DD-HH-MM (military)
+  #   @film_id = options["film_id"]
   #   @host_msg = options["host_msg"]
   #   @current_event = options["current_event"]
-  #   @film_id = options["film_id"]
   # end
   
   #---------------------------------------------------------
