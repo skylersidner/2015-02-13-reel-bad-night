@@ -1,6 +1,9 @@
 
 
 class Patron < ActiveRecord::Base
+
+  has_many :events_patrons
+  has_many :events, :through => :events_patrons
   
   # attr_reader :id
   # attr_accessor :first_name, :last_name, :username, :password
@@ -27,19 +30,19 @@ class Patron < ActiveRecord::Base
   #
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
-  def insert
-    DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES ('#{@first_name}', '#{@last_name}', '#{@username}', '#{@password}')")
-    @id = DATABASE.last_insert_row_id
-  end
-  
-  def self.get_user(username)
-    results = DATABASE.execute("SELECT * FROM patrons WHERE username = '#{username}'")
-    if results.count == 0
-      return nil
-    else
-      object = self.new(results[0])
-      object
-    end
-  end
+  # def insert
+  #   DATABASE.execute("INSERT INTO patrons (first_name, last_name, username, password) VALUES ('#{@first_name}', '#{@last_name}', '#{@username}', '#{@password}')")
+  #   @id = DATABASE.last_insert_row_id
+  # end
+  #
+  # def self.get_user(username)
+  #   results = DATABASE.execute("SELECT * FROM patrons WHERE username = '#{username}'")
+  #   if results.count == 0
+  #     return nil
+  #   else
+  #     object = self.new(results[0])
+  #     object
+  #   end
+  # end
   
 end #class
