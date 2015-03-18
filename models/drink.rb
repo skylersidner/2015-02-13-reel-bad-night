@@ -2,6 +2,8 @@
 
 class Drink < ActiveRecord::Base
   
+  belongs_to :event
+  
   # attr_reader :id
   # attr_accessor :name, :category, :description, :event_id
   
@@ -26,9 +28,9 @@ class Drink < ActiveRecord::Base
   #
   # State Changes: Creates a new record in the database.
   #---------------------------------------------------------
-  def insert
-    DATABASE.execute("INSERT INTO drinks (name, category, description, event_id) VALUES ('#{@name}', '#{@category}', '#{@description}', '#{@event_id}')")
-    @id = DATABASE.last_insert_row_id
-  end
+  # def insert
+  #   DATABASE.execute("INSERT INTO drinks (name, category, description, event_id) VALUES ('#{@name}', '#{@category}', '#{@description}', '#{@event_id}')")
+  #   @id = DATABASE.last_insert_row_id
+  # end
   
 end #class

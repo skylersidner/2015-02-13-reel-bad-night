@@ -2,6 +2,8 @@
 
 class Event < ActiveRecord::Base
 
+  has_many :drinks
+
   has_many :events_patrons
   has_many :patrons, :through => :events_patrons
   
