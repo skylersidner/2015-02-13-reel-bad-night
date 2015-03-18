@@ -17,7 +17,7 @@ get "/patrons/new" do
   erb :"/manipulate/new"
 end
 
-get "/patrons/save" do
+post "/patrons/save" do
   @new = Patron.create(params)
   redirect "/patrons/#{@new.id}/show"
 end
@@ -41,7 +41,7 @@ get "/patrons/:id/edit" do
   erb :"/manipulate/edit_patron"  
 end
 
-get "/patrons/:id/update" do
+post "/patrons/:id/update" do
   @object = Patron.find_by id: params[:id]
   @object.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
   redirect "/patrons/#{@object.id}/show"
@@ -52,7 +52,7 @@ get "/patrons/:id/confirm" do
   erb :"/manipulate/confirm_patron"
 end
 
-get "/patrons/:id/delete" do
+post "/patrons/:id/delete" do
   @object = Patron.find_by id: params[:id]
   @object.destroy
   redirect "/patrons"  

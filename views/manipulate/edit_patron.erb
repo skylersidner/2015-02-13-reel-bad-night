@@ -1,7 +1,7 @@
 <h2>Patrons</h2>
 
 <div class="display">
-  <form action="/patrons/<%= @object.id %>/update">
+  <form action="/patrons/<%= @object.id %>/update" method="post">
     <p>ID: <%= @object.id %></p>
     <input type="hidden" name="id" value="<%= @object.id %>">
     <p>First Name: <input type="text" name="first_name" value="<%= @object.first_name %>"></p>
