@@ -161,11 +161,10 @@ h2 {
 }
 
 .display {
-  display: relative;
   background-color: #AA6939;
   margin: 5px;
   padding: 2px;
-  clear: both;
+  overflow: auto;
 }
 
 .display p {

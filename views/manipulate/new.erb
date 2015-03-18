@@ -2,7 +2,7 @@
 
 <div class="display">
   <div class="new_form">
-    <form action="/<%= @title.downcase %>/save">
+    <form action="/<%= @title.downcase %>/save" method="post">
         <% @table.each do |x| %>
           <% if x != "id" %>
             <p><%= "#{x}" %>: <input type="text" name="<%= x %>" value="<%= @object.send(x) %>"><p>

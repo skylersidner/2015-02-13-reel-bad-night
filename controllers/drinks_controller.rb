@@ -17,7 +17,7 @@ get "/drinks/new" do
   erb :"/manipulate/new"
 end
 
-get "/drinks/save" do
+post "/drinks/save" do
   @new = Drink.create(params)
   # @new = Drink.new(params)
   # @new.insert
@@ -46,7 +46,7 @@ get "/drinks/:id/edit" do
   erb :"/manipulate/edit_drink"  
 end
 
-get "/drinks/:id/update" do
+post "/drinks/:id/update" do
   # @object = Drink.new(name: params[:name], category: params[:category], description: params[:description], event_id: params[:event_id])
   # @object.save
   
@@ -64,7 +64,7 @@ get "/drinks/:id/confirm" do
   erb :"/manipulate/confirm_drink"
 end
 
-get "/drinks/:id/delete" do
+post "/drinks/:id/delete" do
   @object = Drink.find_by id: params[:id]
   @object.destroy
   # @object = Drink.find_specific(params[:id])
