@@ -2,8 +2,7 @@
 
 class Patron < ActiveRecord::Base
 
-  has_many :events_patrons
-  has_many :events, :through => :events_patrons
+  has_and_belongs_to_many :events
   
   # attr_reader :id
   # attr_accessor :first_name, :last_name, :username, :password

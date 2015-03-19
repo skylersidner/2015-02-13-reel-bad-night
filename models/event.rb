@@ -5,8 +5,7 @@ class Event < ActiveRecord::Base
   has_many :drinks
   belongs_to :film
 
-  has_many :events_patrons
-  has_many :patrons, :through => :events_patrons
+  has_and_belongs_to_many :patrons
   
   # attr_reader :id
   # attr_accessor :start_time, :film_id, :host_msg, :current_event
