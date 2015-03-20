@@ -19,7 +19,10 @@ require 'sqlite3'
 
 Bundler.require(:default)
 
-set :database, {adapter: "sqlite3", database: "database/reel_bad.db"}
+configure :development do
+  set :database, {adapter: "sqlite3", database: "database/reel_bad.db"}
+end
+
 
 require_relative 'database/db_setup.rb'
 
