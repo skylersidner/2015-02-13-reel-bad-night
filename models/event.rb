@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
 
   has_and_belongs_to_many :patrons
   
+  validates :start_time, presence: true
+  
   # attr_reader :id
   # attr_accessor :start_time, :film_id, :host_msg, :current_event
   #

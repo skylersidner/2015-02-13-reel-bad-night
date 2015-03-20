@@ -4,6 +4,9 @@ class Drink < ActiveRecord::Base
   
   belongs_to :event
   
+  validates :name, presence: true
+  validates :category, presence: true
+  
   # attr_reader :id
   # attr_accessor :name, :category, :description, :event_id
   

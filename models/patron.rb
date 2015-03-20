@@ -4,6 +4,11 @@ class Patron < ActiveRecord::Base
 
   has_and_belongs_to_many :events
   
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username, presence: true
+  validates :password, presence: true
+  
   # attr_reader :id
   # attr_accessor :first_name, :last_name, :username, :password
   #

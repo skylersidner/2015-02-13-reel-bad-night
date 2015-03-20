@@ -4,6 +4,11 @@ class Film < ActiveRecord::Base
   
   has_many :events
   
+  validates :title, presence: true
+  validates :year, presence: true
+  validates :length, presence: true
+  validates :synopsis, presence: true
+  
   # attr_reader :id
   # attr_accessor :title, :year, :length, :synopsis, :trailer, :rt_rating
   #
