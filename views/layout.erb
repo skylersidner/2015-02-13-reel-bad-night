@@ -10,7 +10,11 @@
   <body>
     <div class="login_bar">
       <div class="username">
-        <p><%= @user.username %></p>
+        <% if @user != nil %>
+          <p><%= @user.username %></p>
+        <% else %>
+          <p>Not Logged In</p>
+        <% end %>
       </div>
       <div class="login_button">
         <p><a href="/login">Login/Logout</a></p>

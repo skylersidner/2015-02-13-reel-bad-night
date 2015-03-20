@@ -1,8 +1,8 @@
 enable :sessions
 
 def no_user
-  @user = Patron.find_by id: 2
-  session[:user] = 2
+  session[:user] = nil
+  @user = nil
 end
 
 def check_for_admin
@@ -12,21 +12,21 @@ def check_for_admin
 end
 
 before "/*" do
-  if session[:user] >= 1 && session[:user] <= 7
+  if session[:user] != nil
     @user = Patron.find_by id: session[:user]
   else
     no_user
   end
 end
 
-["/*/:id/edit"].each do |path|
+["/*/:id/edit", "/*/new"].each do |path|
   before path do
     check_for_admin
   end
 end
 
 get "/login" do
-  if session[:user] >= 1 && session[:user] <= 7 && session[:user] != 2
+  if session[:user] != nil
     redirect "/patrons/#{session[:user]}/show"
   end
   erb :"/login/login"

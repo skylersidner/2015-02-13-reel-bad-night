@@ -15,6 +15,5 @@ get "/" do
   end
   # array = Film.search("id", "#{@previous_event.film_id}")
   # @previous_film = array[0]
-  binding.pry
   erb :"index/homepage"
 end
