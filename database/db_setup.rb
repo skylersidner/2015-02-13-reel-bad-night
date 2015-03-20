@@ -2,7 +2,7 @@
 # DATABASE = SQLite3::Database.new("database/reel_bad.db")
 
 unless ActiveRecord::Base.connection.table_exists?(:films)
-  ActiveRecrod::Base.connection.create_table :films do |t|
+  ActiveRecord::Base.connection.create_table :films do |t|
     t.text :title
     t.integer :year
     t.integer :length
@@ -22,7 +22,7 @@ end
 #                  rt_rating INTEGER)")
 
 unless ActiveRecord::Base.connection.table_exists?(:events)
-  ActiveRecrod::Base.connection.create_table :events do |t|
+  ActiveRecord::Base.connection.create_table :events do |t|
     t.text :start_time
     t.text :host_msg
     t.integer :current_event
@@ -39,7 +39,7 @@ end
 #                  FOREIGN KEY (film_id) REFERENCES films(id))")
 
 unless ActiveRecord::Base.connection.table_exists?(:drinks)
-  ActiveRecrod::Base.connection.create_table :drinks do |t|
+  ActiveRecord::Base.connection.create_table :drinks do |t|
     t.text :name
     t.text :category
     t.text :description
@@ -56,7 +56,7 @@ end
 #                  FOREIGN KEY (event_id) REFERENCES events(id))")
 
 unless ActiveRecord::Base.connection.table_exists?(:patrons)
-  ActiveRecrod::Base.connection.create_table :patrons do |t|
+  ActiveRecord::Base.connection.create_table :patrons do |t|
     t.text :first_name
     t.text :last_name
     t.text :username
@@ -72,7 +72,7 @@ end
 #                   password TEXT NOT NULL)")
 
 unless ActiveRecord::Base.connection.table_exists?(:events_patrons)
-  ActiveRecrod::Base.connection.create_table :events_patrons do |t|
+  ActiveRecord::Base.connection.create_table :events_patrons do |t|
     t.integer :event_id
     t.integer :patron_id 
   end
