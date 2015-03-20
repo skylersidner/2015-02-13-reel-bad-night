@@ -15,11 +15,11 @@ require 'active_support/Inflector'
 require 'active_support/core_ext/date_time/conversions'
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'sqlite3'
 
 Bundler.require(:default)
 
 configure :development do
+  require 'sqlite3'
   set :database, {adapter: "sqlite3", database: "database/reel_bad.db"}
 end
 
