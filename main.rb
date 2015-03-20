@@ -11,7 +11,7 @@ include RottenTomatoes
 Rotten.api_key = "5su6tan6prmdssxst2q9xgv6"
 
 require 'active_support'
-require 'active_support/Inflector'
+require 'active_support/inflector'
 require 'active_support/core_ext/date_time/conversions'
 require 'sinatra'
 require 'sinatra/activerecord'
