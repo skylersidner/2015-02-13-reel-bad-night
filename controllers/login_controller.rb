@@ -19,7 +19,8 @@ before "/*" do
   end
 end
 
-["/*/:id/edit", "/*/new"].each do |path|
+# ["/*/:id/edit", "/*/new"].each do |path|
+["/*/:id/edit"].each do |path|
   before path do
     check_for_admin
   end
