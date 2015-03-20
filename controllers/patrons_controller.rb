@@ -32,28 +32,28 @@ get "/patrons/search_results" do
 end
 
 get "/patrons/:id/show" do
-  @object = Patron.find_by id: params[:id]
+  @object = Patron.find_by_id(params[:id])
   erb :"/display/display_patron"
 end
 
 get "/patrons/:id/edit" do
-  @object = Patron.find_by id: params[:id]
+  @object = Patron.find_by_id(params[:id])
   erb :"/manipulate/edit_patron"  
 end
 
 post "/patrons/:id/update" do
-  @object = Patron.find_by id: params[:id]
+  @object = Patron.find_by_id(params[:id])
   @object.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
   redirect "/patrons/#{@object.id}/show"
 end
 
 get "/patrons/:id/confirm" do
-  @object = Patron.find_by id: params[:id]
+  @object = Patron.find_by_id(params[:id])
   erb :"/manipulate/confirm_patron"
 end
 
 post "/patrons/:id/delete" do
-  @object = Patron.find_by id: params[:id]
+  @object = Patron.find_by_id(params[:id])
   @object.destroy
   redirect "/patrons"  
 end

@@ -8,18 +8,26 @@
   </head>
   
   <body>
-    <div class="login_bar">
-      <div class="username">
-        <% if @user != nil %>
+    <% if @user != nil %>
+      <div class="login_bar">
+        <div class="username">
           <p><%= @user.username %></p>
-        <% else %>
+        </div>
+        <div class="login_button">
+          <p><a href="/logout">Logout</a></p>
+        </div>
+      </div>
+    <% else %>
+      <div class="login_bar">
+        <div class="username">
           <p>Not Logged In</p>
-        <% end %>
+        </div>
+        <div class="login_button">
+          <p><a href="/login">Login</a></p>
+        </div>
       </div>
-      <div class="login_button">
-        <p><a href="/login">Login/Logout</a></p>
-      </div>
-    </div>
+    <% end %>
+    
     <div class="nav_column">
       <h3><a href="/">Home</a></h3>
       <ul>

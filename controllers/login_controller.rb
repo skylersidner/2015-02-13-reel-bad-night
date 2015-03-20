@@ -6,15 +6,15 @@ def no_user
 end
 
 def check_for_admin
-  @user = Patron.find_by id: session[:user]
+  @user = Patron.find_by_id(session[:user])
   if @user.username != "Admin"
     redirect "/login"
   end
 end
 
 before "/*" do
-  if session[:user] != nil
-    @user = Patron.find_by id: session[:user]
+  if session[:user].is_a?(Integer)
+    @user = Patron.find_by_id(session[:user])
   else
     no_user
   end
@@ -22,14 +22,15 @@ end
 
 ["/*/:id/edit"].each do |path|
   before path do
-    check_for_admin
+    if session[:user].is_a?(Integer)
+      check_for_admin
+    else
+      redirect "/login"
+    end
   end
 end
 
 get "/login" do
-  if session[:user] != nil
-    no_user
-  end
   erb :"/login/login"
 end
 
@@ -48,5 +49,6 @@ end
 
 get "/logout" do
   no_user
-  redirect "/"
+  @logout = true
+  erb :"/login/login"
 end
