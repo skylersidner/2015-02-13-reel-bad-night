@@ -6,7 +6,8 @@ def no_user
 end
 
 def check_for_admin
-  if session[:user] != 1
+  @user = Patron.find_by id: session[:user]
+  if @user.username != "Admin"
     redirect "/login"
   end
 end
@@ -19,7 +20,6 @@ before "/*" do
   end
 end
 
-# ["/*/:id/edit", "/*/new"].each do |path|
 ["/*/:id/edit"].each do |path|
   before path do
     check_for_admin
