@@ -1,43 +1,52 @@
 
 <div class="current">
   <h3>Next Reel Bad Night</h3>
-  <div class="host_msg">
-    <p>Host Message: <%= @current_event.host_msg %></p>
-  </div>
-  <div class="date_time">
-    <p>Date and Start Time: <%= @current_event.start_time %></p>
-  </div>
-  <div class="title_synopsis">
-    <p>Film: <%= @current_film.title %></p>
-    <p>Year: <%= @current_film.year %></p>
-    <p>Plot Synopsis: <%= @current_film.synopsis %></p>
-  </div>
-  <div class="length_rating">
-    <p>Film Length: <%= @current_film.length %></p>
-    <p>Tomatometer Rating: <%= @current_film.rt_rating %></p>
-  </div>
-  <div class="trailer">
-    <p>See the <a href="<%= @current_film.trailer %>">trailer</a>
-  </div>
+  <% if @current_event == nil %>
+    <p>Comming Soon!<p>
+  <% else %>
+    <div class="host_msg">
+      <p>Host Message: <%= @current_event.host_msg %></p>
+    </div>
+    <div class="date_time">
+      <p>Date and Start Time: <%= @current_event.start_time %></p>
+    </div>
+    <div class="title_synopsis">
+      <p>Film: <%= @current_film.title %></p>
+      <p>Year: <%= @current_film.year %></p>
+      <p>Plot Synopsis: <%= @current_film.synopsis %></p>
+    </div>
+    <div class="length_rating">
+      <p>Film Length: <%= @current_film.length %></p>
+      <p>Tomatometer Rating: <%= @current_film.rt_rating %></p>
+    </div>
+    <div class="trailer">
+      <p>See the <a href="<%= @current_film.trailer %>">trailer</a>
+    </div>
+  <% end %>
 </div>
 
 <div class="previous">
   <h3>Previous Reel Bad Night</h3>
-  <div class="host_msg">
-    <p>Host Message: <%= @previous_event.host_msg %></p>
-  </div>
-  <div class="date_time">
-    <p>Date and Start Time: <%= @previous_event.start_time %></p>
-  </div>
-  <div class="title_synopsis">
-    <p>Film: <%= @previous_film.title %></p>
-    <p>Year: <%= @previous_film.year %></p>
-    <p>Plot Synopsis: <%= @previous_film.synopsis %></p>
-  </div>
-  <div class="length_rating">
-    <p>Film Length: <%= @previous_film.length %></p>
-    <p>Tomatometer Rating: <%= @previous_film.rt_rating %></p>
-  </div>
-  <div class="trailer">
-    <p>See the <a href="#{<%= @previous_film.trailer %>}">trailer</a>  </div>
+  <% if @previous_event == nil %>
+    <p>Comming Soon!<p>
+  <% else %>
+    <div class="host_msg">
+      <p>Host Message: <%= @previous_event.host_msg %></p>
+    </div>
+    <div class="date_time">
+      <p>Date and Start Time: <%= @previous_event.start_time %></p>
+    </div>
+    <div class="title_synopsis">
+      <p>Film: <%= @previous_film.title %></p>
+      <p>Year: <%= @previous_film.year %></p>
+      <p>Plot Synopsis: <%= @previous_film.synopsis %></p>
+    </div>
+    <div class="length_rating">
+      <p>Film Length: <%= @previous_film.length %></p>
+      <p>Tomatometer Rating: <%= @previous_film.rt_rating %></p>
+    </div>
+    <div class="trailer">
+      <p>See the <a href="#{<%= @previous_film.trailer %>}">trailer</a>
+    </div>
+  <% end %>
 </div>
