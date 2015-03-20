@@ -9,11 +9,6 @@
     <input type="hidden" value="<%= @object.id %>">
     <input type="submit" value="Edit/Delete">
   </form>
-  <% if @user.id == @object.id %>
-    <form action="/logout">
-      <input type="hidden" value="<%= @object.id %>">
-      <input type="submit" value="Logout">
-    </form>
-  <% end %>
 </div>
+
 

@@ -28,7 +28,7 @@ end
 
 get "/login" do
   if session[:user] != nil
-    redirect "/patrons/#{session[:user]}/show"
+    no_user
   end
   erb :"/login/login"
 end
