@@ -9,4 +9,5 @@ gem 'rottentomatoes'
 gem 'activesupport'
 gem 'sinatra'
 gem "sinatra-activerecord"
-gem 'sqlite3'
+gem 'sqlite3', :groups => [:development, :test]
+gem 'pg', :groups => [:production]
